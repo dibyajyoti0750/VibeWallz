@@ -1,0 +1,163 @@
+module.exports.sampleData = [
+  {
+    title: "Serene Mountain View",
+    description: "A breathtaking view of mountains under a clear sky.",
+    image:
+      "https://img.freepik.com/free-photo/fantasy-anime-style-scene_23-2151135021.jpg?t=st=1742622153~exp=1742625753~hmac=1a35c5e1e5e9151772aec4398e14b4b4d20c98bd1c8289cedfbc1939ec0c44f5&w=740",
+    category: "Nature",
+    tags: ["mountains", "scenery", "nature", "outdoors"],
+  },
+  {
+    title: "Cyberpunk Cityscape",
+    description: "A futuristic city glowing with neon lights.",
+    image:
+      "https://img.freepik.com/free-photo/anime-night-sky-illustration_23-2151684373.jpg?t=st=1742622258~exp=1742625858~hmac=88f9d24285cf9265fcb095c310b4b86641f3b1b38356257fd39b2bac4f0d832b&w=740",
+    category: "Cyberpunk",
+    tags: ["cyberpunk", "city", "neon", "futuristic"],
+  },
+  {
+    title: "Galaxy Dream",
+    description: "A mesmerizing view of a distant galaxy.",
+    image:
+      "https://img.freepik.com/free-photo/anime-landscape-person-traveling_23-2151038203.jpg?t=st=1742622272~exp=1742625872~hmac=128d9e5858c832b72d70b33a3f8b489d603c55e47c32ad3d1ea2e8e065a72c9e&w=740",
+
+    category: "Space",
+    tags: ["galaxy", "stars", "space", "universe"],
+  },
+  {
+    title: "Autumn Forest Path",
+    description: "A peaceful forest path covered in autumn leaves.",
+    image:
+      "https://img.freepik.com/free-photo/robot-human-silhouettes_23-2150042388.jpg?t=st=1742622291~exp=1742625891~hmac=3fbfe477dfc56b82142db9be25a3777bd828567b073770de9dc69fe483da1db6&w=740",
+    category: "Nature",
+    tags: ["forest", "autumn", "leaves", "pathway"],
+  },
+  {
+    title: "Minimalist Blue Gradient",
+    description: "A simple and elegant blue gradient background.",
+    image:
+      "https://img.freepik.com/free-photo/anime-moon-landscape_23-2151645925.jpg?t=st=1742622306~exp=1742625906~hmac=5b03e18875e080cac4319c5ae57ffeb88cda3b1f05a388d99b8e98047e7996a3&w=740",
+    category: "Minimalist",
+    tags: ["minimalist", "gradient", "blue", "simple"],
+  },
+  {
+    title: "Anime Night Sky",
+    description: "A dreamy anime-style night sky with shooting stars.",
+    image:
+      "https://img.freepik.com/free-photo/anime-landscape-person-traveling_23-2151038204.jpg?t=st=1742622321~exp=1742625921~hmac=fe05ffcb529f58730fd02a4e300f07c64af6bbf2cdd6418df22e141b29c6865e&w=740",
+    category: "Anime",
+    tags: ["anime", "stars", "night", "sky"],
+  },
+  {
+    title: "Retro Sunset",
+    description: "A nostalgic 80s-style retro sunset.",
+    image:
+      "https://img.freepik.com/free-photo/anime-like-illustration-girl-by-sea_23-2151835243.jpg?t=st=1742622335~exp=1742625935~hmac=077ee222130228720c7808644e88c9944e1c6dbad3525598409e278d8f8176c3&w=740",
+    category: "Retro",
+    tags: ["retro", "sunset", "neon", "vaporwave"],
+  },
+  {
+    title: "Ocean Waves",
+    description: "Gentle ocean waves hitting the shore.",
+    image:
+      "https://img.freepik.com/free-photo/japan-background-digital-art_23-2151546188.jpg?t=st=1742622350~exp=1742625950~hmac=1ec8ea1ca42ec503dfaec30de0096860c1dab856ee942eff500c69995b405249&w=740",
+    category: "Nature",
+    tags: ["ocean", "waves", "sea", "beach"],
+  },
+  {
+    title: "Dark Mode Abstract",
+    description: "A sleek dark-mode abstract wallpaper.",
+    image:
+      "https://img.freepik.com/free-photo/illustration-anime-city_23-2151779724.jpg?t=st=1742622375~exp=1742625975~hmac=1d1d1e22817caa09d2bc9cad107e5edb57ab3b963cb21dbf04f6994879c88517&w=740",
+    category: "Abstract",
+    tags: ["dark mode", "abstract", "modern", "sleek"],
+  },
+  {
+    title: "Rainy Window Aesthetic",
+    description: "Raindrops on a window with a city view.",
+    image:
+      "https://img.freepik.com/free-photo/beautiful-anime-character-cartoon-scene_23-2151035158.jpg?t=st=1742622399~exp=1742625999~hmac=9a89338b34256cc556a3270a062498dac192369f5585ce48ed17d8ed7213d738&w=740",
+    category: "Aesthetic",
+    tags: ["rain", "window", "city", "aesthetic"],
+  },
+  {
+    title: "Lofi Study Room",
+    description: "A cozy lofi-inspired study room wallpaper.",
+    image:
+      "https://img.freepik.com/free-photo/fantasy-anime-style-scene_23-2151135153.jpg?t=st=1742622657~exp=1742626257~hmac=e0a5e976e7ee1e02ccf1b10ce127b35e9b447946c264bc96553ec7aae3172389&w=740",
+    category: "Lofi",
+    tags: ["lofi", "study", "cozy", "room"],
+  },
+  {
+    title: "Pastel Clouds",
+    description: "Soft pastel clouds floating in the sky.",
+    image:
+      "https://img.freepik.com/free-photo/anime-style-illustration-with-scary-halloween-scene_23-2151794225.jpg?t=st=1742622683~exp=1742626283~hmac=28485d13f0a76f08ea07ddf7d61b70d212398b3e9e3c0b6db8158086d1f00128&w=740",
+    category: "Aesthetic",
+    tags: ["pastel", "clouds", "soft", "sky"],
+  },
+  {
+    title: "Tokyo Night Street",
+    description: "A neon-lit Tokyo street at night.",
+    image:
+      "https://img.freepik.com/free-photo/anime-like-illustration-girl-by-sea_23-2151835239.jpg?t=st=1742622705~exp=1742626305~hmac=188834c05e8f30ab1ea7152eaf88cd2c1327cc33dbec39bacdd1bf64267e069f&w=740",
+    category: "Cityscape",
+    tags: ["Tokyo", "night", "street", "neon"],
+  },
+  {
+    title: "Pixel Art Mountains",
+    description: "A charming pixel-art depiction of mountains.",
+    image:
+      "https://img.freepik.com/free-photo/rainy-day-mood-cartoon-style_23-2151557019.jpg?t=st=1742622720~exp=1742626320~hmac=5b905a1cba004261c2a4f0beb085a1f0957a0fde5dc7fdb8249d64c71e656fe5&w=740",
+    category: "Pixel Art",
+    tags: ["pixel art", "mountains", "retro", "8-bit"],
+  },
+  {
+    title: "Abstract Fire and Ice",
+    description: "A mix of fiery and icy abstract elements.",
+    image:
+      "https://img.freepik.com/free-photo/scene-anime-style-chinese-new-year-festival-celebration_23-2151079840.jpg?t=st=1742622737~exp=1742626337~hmac=3e44f91127b93214ee4ab8e19709eaa01c0b09df1e5142b93f572a5ab07152dd&w=740",
+    category: "Abstract",
+    tags: ["fire", "ice", "contrast", "abstract"],
+  },
+  {
+    title: "Cyber Samurai",
+    description: "A futuristic cyber samurai warrior.",
+    image:
+      "https://img.freepik.com/free-photo/fantasy-scene-anime-style_23-2151135265.jpg?t=st=1742622755~exp=1742626355~hmac=fda64cb5fb9dae675611db4b46aec313a55d6c6a310af6a7c7cfbb6bbbc4691f&w=740",
+    category: "Cyberpunk",
+    tags: ["cyberpunk", "samurai", "futuristic", "neon"],
+  },
+  {
+    title: "Mystical Forest",
+    description: "A magical forest glowing with ethereal light.",
+    image:
+      "https://img.freepik.com/free-photo/anime-moon-landscape_23-2151645883.jpg?t=st=1742622783~exp=1742626383~hmac=414c7e2d99e55becf6256ade9a8969891cb4ee9e05c961986f5c3b8f4da0ce6a&w=740",
+    category: "Fantasy",
+    tags: ["fantasy", "forest", "mystical", "glow"],
+  },
+  {
+    title: "Astronaut Floating in Space",
+    description: "An astronaut drifting peacefully in space.",
+    image:
+      "https://img.freepik.com/free-photo/anime-character-using-virtual-reality-glasses-metaverse_23-2151568856.jpg?t=st=1742622808~exp=1742626408~hmac=2c073857a14f09692203b08ec800e86fe249181a644a8c8e916d9c1435acb6b9&w=740",
+    category: "Space",
+    tags: ["astronaut", "space", "galaxy", "floating"],
+  },
+  {
+    title: "Monochrome City",
+    description: "A black-and-white cityscape with a dramatic feel.",
+    image:
+      "https://img.freepik.com/free-photo/anime-style-character-with-fire-flames_23-2151152408.jpg?t=st=1742622829~exp=1742626429~hmac=c7af21b1d1f23ac1f566e7c9022ab8708fd54091ad969e37c2940e3a3ea36653&w=740",
+    category: "Cityscape",
+    tags: ["monochrome", "city", "black and white", "modern"],
+  },
+  {
+    title: "Futuristic AI Concept",
+    description: "A high-tech AI-generated futuristic theme.",
+    image:
+      "https://img.freepik.com/free-photo/fantasy-anime-style-scene_23-2151135168.jpg?t=st=1742622874~exp=1742626474~hmac=b86bd5e7f67e35be3fd7b4e13417d614143e562e9217cccca3688ca994b1784b&w=740",
+    category: "Technology",
+    tags: ["AI", "technology", "future", "sci-fi"],
+  },
+];

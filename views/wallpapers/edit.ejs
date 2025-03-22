@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Edit your wallpaper</h3>
+    <form method="post" action="/wallpapers/<%= wallpaper._id %>?_method=PUT">
+      <input
+        type="url"
+        name="wallpaper[image]"
+        value="<%= wallpaper.image %>"
+      />
+      <input
+        type="text"
+        name="wallpaper[title]"
+        value="<%= wallpaper.title %>"
+      />
+      <textarea name="wallpaper[description]">
+<%= wallpaper.description %></textarea
+      >
+      <input
+        type="text"
+        name="wallpaper[category]"
+        value="<%= wallpaper.category %>"
+      />
+      <input type="text" name="wallpaper[tags]" value="<%= wallpaper.tags %>" />
+      <button>Edit</button>
+    </form>
+  </body>
+</html>
