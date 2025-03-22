@@ -1,0 +1,30 @@
+body {
+  background-color: pink;
+}
+
+#upload-btn {
+  border-radius: 0.6rem;
+  padding: 0.6rem;
+  background-color: black;
+  color: white;
+  font-weight: 500;
+}
+
+.search-container {
+  width: 60%;
+}
+
+#search {
+  width: 80%;
+  height: 2.6rem;
+  margin-left: 8rem;
+}
+
+#search .form-control::placeholder {
+  font-size: 1.1rem;
+  color: gray;
+}
+
+.dropdown-toggle {
+  font-size: 1.2rem;
+}

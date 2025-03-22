@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h3>All Wallpapers</h3>
-    <form action="/wallpapers/new" method="get">
-      <button>Upload</button>
-    </form>
-    <ul>
-      <% for(let wallpaper of wallpapers) { %>
-      <li>
-        <a href="/wallpapers/<%= wallpaper._id %>"><%= wallpaper.title %></a>
-      </li>
-      <% } %>
-    </ul>
-  </body>
-</html>
+<% layout("/layouts/boilerplate") %>
+<h3>All Wallpapers</h3>
+<ul>
+  <% for(let wallpaper of wallpapers) { %>
+  <li>
+    <a href="/wallpapers/<%= wallpaper._id %>"><%= wallpaper.title %></a>
+  </li>
+  <% } %>
+</ul>

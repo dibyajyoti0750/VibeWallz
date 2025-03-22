@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a
+      class="navbar-brand"
+      href="/"
+      style="font-family: 'Niconne', cursive; font-size: 2rem"
+    >
+      VibeWallz
+    </a>
+
+    <!-- Search and Explore -->
+    <div class="flex-grow-1 mx-3 search-container">
+      <div class="d-flex justify-content-center align-items-center">
+        <form id="search" class="d-flex" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search wallpapers"
+          />
+          <button class="btn btn-outline-primary" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+
+        <!-- Explore Dropdown -->
+        <div class="nav-item dropdown ms-3">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            >Explore</a
+          >
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fa-solid fa-fire"></i> Trending</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fa-solid fa-crown"></i> Popular</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar Toggler -->
+    <button
+      class="navbar-toggler me-2"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible Menu -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item w-100">
+          <a
+            id="upload-btn"
+            class="nav-link btn btn-outline px-3"
+            href="/wallpapers/new"
+          >
+            <i class="fa-solid fa-arrow-up-from-bracket"></i> Upload
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
