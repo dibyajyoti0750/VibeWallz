@@ -1,75 +1,62 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
   <div class="container-fluid">
-    <!-- Logo -->
-    <a
-      class="navbar-brand"
-      href="/"
-      style="font-family: 'Niconne', cursive; font-size: 2rem"
-    >
-      VibeWallz
-    </a>
-
-    <!-- Search and Explore -->
-    <div class="flex-grow-1 mx-3 search-container">
-      <div class="d-flex justify-content-center align-items-center">
-        <form id="search" class="d-flex" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search wallpapers"
-          />
-          <button class="btn btn-outline-primary" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>
-
-        <!-- Explore Dropdown -->
-        <div class="nav-item dropdown ms-3">
-          <a
-            class="nav-link dropdown-toggle"
-            role="button"
-            data-bs-toggle="dropdown"
-            >Explore</a
-          >
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="fa-solid fa-fire"></i> Trending</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                ><i class="fa-solid fa-crown"></i> Popular</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navbar Toggler -->
+    <a class="navbar-brand ms-2" href="#">VibeWallz</a>
     <button
-      class="navbar-toggler me-2"
+      class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
     >
-      <span class="navbar-toggler-icon"></span>
+      <span class="toggler-line"></span>
+      <span class="toggler-line"></span>
+      <span class="toggler-line"></span>
     </button>
 
-    <!-- Collapsible Menu -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item w-100">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link2</a>
+        </li>
+        <li class="nav-item dropdown">
           <a
-            id="upload-btn"
-            class="nav-link btn btn-outline px-3"
-            href="/wallpapers/new"
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
           >
-            <i class="fa-solid fa-arrow-up-from-bracket"></i> Upload
+            Orientations
           </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fas fa-mobile-screen"></i> Portrait</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                ><i class="fas fa-desktop"></i> Landscape</a
+              >
+            </li>
+          </ul>
         </li>
       </ul>
+
+      <div class="search-form">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" />
+          <button class="btn btn-outline-primary" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="ms-auto me-2 mt-md-0 mt-lg-0 mt-3">
+        <form class="container-fluid">
+          <button class="btn btn-dark w-100" type="button">Upload</button>
+        </form>
+      </div>
     </div>
   </div>
 </nav>

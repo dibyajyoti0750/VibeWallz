@@ -1,9 +1,111 @@
 <% layout("/layouts/boilerplate") %>
-<h3>All Wallpapers</h3>
-<ul>
-  <% for(let wallpaper of wallpapers) { %>
-  <li>
-    <a href="/wallpapers/<%= wallpaper._id %>"><%= wallpaper.title %></a>
-  </li>
-  <% } %>
-</ul>
+<main>
+  <div class="container mt-2">
+    <div class="row g-4" data-masonry='{"percentPosition": true}'>
+      <% for(let wallpaper of wallpapers) { %>
+      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+        <div
+          class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative"
+          data-orientation="portrait"
+        >
+          <img
+            loading="lazy"
+            src="<%= wallpaper.image %>"
+            class="card-img-top img-fluid"
+            alt="<%= wallpaper.title %>"
+            style="object-fit: cover"
+          />
+          <a
+            href="<%= wallpaper.image %>"
+            download
+            class="download-btn btn"
+            title="Download wallpaper"
+          >
+            <i class="fas fa-download"></i>
+          </a>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<script>
+  let dropItems = document.querySelectorAll(".dropdown-item");
+
+  dropItems.forEach((drop) => {
+    drop.addEventListener("click", () => {
+      dropItems.forEach((item) => item.classList.remove("active"));
+
+      drop.classList.add("active");
+    });
+  });
+</script>
+
+<style>
+  .dropdown {
+    display: inline-block;
+  }
+
+  .nav-item.dropdown .dropdown-toggle::after {
+    vertical-align: middle;
+  }
+
+  .card {
+    height: 100%;
+  }
+  .card-img-top {
+    height: 100%;
+  }
+
+  .card[data-orientation="portrait"] img {
+    aspect-ratio: 9/16;
+  }
+  .card[data-orientation="landscape"] img {
+    aspect-ratio: 16/9;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+    z-index: 1;
+  }
+
+  .download-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .download-btn:hover {
+    transform: scale(1.1);
+    color: white;
+  }
+
+  @media (orientation: portrait) {
+    .download-btn {
+      font-size: 1.5rem;
+      padding: 0.5rem;
+    }
+  }
+
+  .card-img-top {
+    position: relative;
+  }
+
+  /* loading placeholder */
+  .card-img-top {
+    background: #f0f0f0;
+    min-height: 200px;
+  }
+</style>

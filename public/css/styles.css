@@ -1,30 +1,115 @@
-body {
-  background-color: pink;
+/* Navbar */
+.navbar-brand {
+  font-family: "Niconne", cursive;
+  font-size: 2rem;
 }
 
-#upload-btn {
-  border-radius: 0.6rem;
-  padding: 0.6rem;
+.search-form {
+  width: 100%;
+}
+
+/* Style the toggler button to remove borders and set dimensions */
+.navbar-toggler {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  width: 30px;
+  height: 20px;
+  position: relative;
+}
+
+/* Ensure no borders or effects in any state */
+.navbar-toggler:hover,
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Style the individual lines of the hamburger icon */
+.toggler-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000; /* Adjust color to match your design */
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease; /* Smooth animation */
+}
+
+/* Position the lines vertically to form a hamburger icon */
+.toggler-line:nth-child(1) {
+  transform: translateY(-50%) translateY(-6px); /* Top line */
+}
+
+.toggler-line:nth-child(2) {
+  transform: translateY(-50%); /* Middle line */
+}
+
+.toggler-line:nth-child(3) {
+  transform: translateY(-50%) translateY(6px); /* Bottom line */
+}
+
+/* Transform the lines into a cross when the menu is open */
+.navbar-toggler[aria-expanded="true"] .toggler-line:nth-child(1) {
+  transform: translateY(-50%) rotate(45deg); /* Top line rotates down */
+}
+
+.navbar-toggler[aria-expanded="true"] .toggler-line:nth-child(2) {
+  opacity: 0; /* Middle line disappears */
+}
+
+.navbar-toggler[aria-expanded="true"] .toggler-line:nth-child(3) {
+  transform: translateY(-50%) rotate(-45deg); /* Bottom line rotates up */
+}
+
+/* Footer */
+.footer-section {
+  background-color: #f8f9fa;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.social-icons a {
+  transition: all 0.3s ease;
+  color: gray !important;
+}
+
+.social-icons a:hover {
+  color: black !important;
+  transform: translateY(-2px);
+}
+
+.list-unstyled li a {
+  transition: all 0.3s ease;
+}
+
+.list-unstyled li a:hover {
+  color: black !important;
+  padding-left: 7px;
+}
+
+.border-bottom {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-dark {
+  background-color: #2d3436;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
   background-color: black;
-  color: white;
-  font-weight: 500;
 }
 
-.search-container {
-  width: 60%;
+.form-control {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#search {
-  width: 80%;
-  height: 2.6rem;
-  margin-left: 8rem;
-}
-
-#search .form-control::placeholder {
-  font-size: 1.1rem;
-  color: gray;
-}
-
-.dropdown-toggle {
-  font-size: 1.2rem;
+.text-dark {
+  color: #2d3436 !important;
 }
