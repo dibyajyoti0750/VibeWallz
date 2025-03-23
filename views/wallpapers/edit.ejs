@@ -42,18 +42,24 @@
         >
       </div>
 
-      <% const categories = ["Nature", "Abstract", "Anime", "Technology",
-      "Cars", "Architecture", "Minimalist", "Space", "Animals", "Fantasy"];
-      const filteredCategories = categories.filter(el => el !==
+      <!-- List of available categories -->
+      <% const categories = [ "Nature", "Abstract", "Cities and Architecture",
+      "Animals", "Technology", "Travel", "Minimalist", "Space and Astronomy",
+      "Seasonal", "Gaming" ]; %>
+
+      <!-- Remove the currently selected category from the options list -->
+      <% const filteredCategories = categories.filter(el => el !==
       wallpaper.category); %>
 
       <div class="mb-3">
         <label for="category" class="form-label">Category</label>
         <select id="category" name="wallpaper[category]" class="form-select">
+          <!-- Display the previously selected category -->
           <option value="<%= wallpaper.category %>" selected>
             <%= wallpaper.category %>
           </option>
 
+          <!-- Dynamically generate the rest of the categories (excluding the selected one) -->
           <% filteredCategories.forEach(el => { %>
           <option value="<%= el %>"><%= el %></option>
           <% }); %>

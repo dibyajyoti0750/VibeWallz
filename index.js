@@ -57,7 +57,9 @@ app.post("/wallpapers", async (req, res) => {
     tags: tags.split(",").map((tag) => tag.trim()),
   });
 
-  await newWallpaper.save();
+  const savedWallpaper = await newWallpaper.save();
+  console.log(savedWallpaper);
+
   res.redirect("/wallpapers");
 });
 
@@ -81,13 +83,18 @@ app.put("/wallpapers/:id", async (req, res) => {
   const { image, title, description, category, tags } = req.body.wallpaper;
   const formattedTags = tags.split(",").map((tag) => tag.trim());
 
-  await Wallpaper.findByIdAndUpdate(id, {
-    image,
-    title,
-    description,
-    category,
-    tags: formattedTags,
-  });
+  const updatedWallpaper = await Wallpaper.findByIdAndUpdate(
+    id,
+    {
+      image,
+      title,
+      description,
+      category,
+      tags: formattedTags,
+    },
+    { new: true }
+  );
+  console.log(updatedWallpaper);
 
   res.redirect("/wallpapers");
 });

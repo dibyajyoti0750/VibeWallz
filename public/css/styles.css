@@ -15,11 +15,12 @@ body {
 
 .card-img-overlay {
   opacity: 0;
+  transition: all 0.2s ease;
 }
 
 .card-img-overlay:hover {
   opacity: 0.2;
-  background-color: white;
+  background-color: black;
 }
 
 /* Navbar */
