@@ -9,7 +9,12 @@
     class="card p-4 shadow-sm rounded-4"
     style="max-width: 500px; width: 100%"
   >
-    <form action="/wallpapers" method="post">
+    <form
+      action="/wallpapers"
+      method="post"
+      novalidate
+      class="needs-validation"
+    >
       <div class="mb-3">
         <label for="image" class="form-label">Image URL</label>
         <input
@@ -18,7 +23,9 @@
           name="wallpaper[image]"
           class="form-control"
           placeholder="Enter image URL"
+          required
         />
+        <div class="invalid-feedback">Image URL cannot be empty.</div>
       </div>
 
       <div class="mb-3">
@@ -29,7 +36,10 @@
           name="wallpaper[title]"
           class="form-control"
           placeholder="Enter title"
+          required
         />
+        <div class="valid-feedback">Title looks good!</div>
+        <div class="invalid-feedback">Title cannot be empty.</div>
       </div>
 
       <div class="mb-3">
@@ -40,12 +50,20 @@
           class="form-control"
           placeholder="Describe your image"
           rows="3"
+          required
         ></textarea>
+        <div class="valid-feedback">Description looks good!</div>
+        <div class="invalid-feedback">Please enter a short description.</div>
       </div>
 
       <div class="mb-3">
         <label for="category" class="form-label">Category</label>
-        <select id="category" name="wallpaper[category]" class="form-select">
+        <select
+          id="category"
+          name="wallpaper[category]"
+          class="form-select"
+          required
+        >
           <option value="" disabled selected>Select a category</option>
           <option value="Nature">Nature</option>
           <option value="Abstract">Abstract</option>
@@ -60,6 +78,7 @@
           <option value="Seasonal">Seasonal</option>
           <option value="Gaming">Fantasy</option>
         </select>
+        <div class="invalid-feedback">Please select a category.</div>
       </div>
 
       <div class="mb-3">
@@ -70,7 +89,9 @@
           name="wallpaper[tags]"
           class="form-control"
           placeholder="e.g. sunset, beach, landscape"
+          required
         />
+        <div class="invalid-feedback">Please add some tags.</div>
       </div>
 
       <button class="btn btn-dark w-100">Upload</button>

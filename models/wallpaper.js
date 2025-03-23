@@ -6,12 +6,8 @@ const wallpaperSchema = new Schema({
   description: String,
   image: {
     type: String,
-    default:
-      "https://res.cloudinary.com/dqw6dicdi/image/upload/v1742616594/32747-2560x2048-desktop-hd-your-name-background-photo_msjet9.jpg",
-    set: (v) =>
-      v === ""
-        ? "https://res.cloudinary.com/dqw6dicdi/image/upload/v1742616594/32747-2560x2048-desktop-hd-your-name-background-photo_msjet9.jpg"
-        : v,
+    default: "https://placehold.co/600x800/000000/FFF",
+    set: (v) => (v === "" ? "https://placehold.co/600x800/000000/FFF" : v),
   },
   category: { type: String },
   tags: [{ type: String }],

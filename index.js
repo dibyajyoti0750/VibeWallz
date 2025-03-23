@@ -102,7 +102,9 @@ app.put("/wallpapers/:id", async (req, res) => {
 // Destroy
 app.delete("/wallpapers/:id", async (req, res) => {
   const { id } = req.params;
-  let del = await Wallpaper.findByIdAndDelete(id);
+  let deletedWall = await Wallpaper.findByIdAndDelete(id);
+  console.log(deletedWall);
+
   res.redirect("/wallpapers");
 });
 

@@ -7,7 +7,12 @@
     class="card p-4 shadow-sm rounded-4"
     style="max-width: 500px; width: 100%"
   >
-    <form method="post" action="/wallpapers/<%= wallpaper._id %>?_method=PUT">
+    <form
+      method="post"
+      action="/wallpapers/<%= wallpaper._id %>?_method=PUT"
+      novalidate
+      class="needs-validation"
+    >
       <div class="mb-3">
         <label for="image" class="form-label">Image URL</label>
         <input
@@ -15,8 +20,10 @@
           id="image"
           name="wallpaper[image]"
           class="form-control"
+          required
           value="<%= wallpaper.image %>"
         />
+        <div class="invalid-feedback">Image URL cannot be empty.</div>
       </div>
 
       <div class="mb-3">
@@ -26,8 +33,10 @@
           id="title"
           name="wallpaper[title]"
           class="form-control"
+          required
           value="<%= wallpaper.title %>"
         />
+        <div class="invalid-feedback">Title cannot be empty.</div>
       </div>
 
       <div class="mb-3">
@@ -37,9 +46,11 @@
           name="wallpaper[description]"
           class="form-control"
           rows="3"
+          required
         >
 <%= wallpaper.description %></textarea
         >
+        <div class="invalid-feedback">Description cannot be empty.</div>
       </div>
 
       <!-- List of available categories -->
@@ -53,7 +64,12 @@
 
       <div class="mb-3">
         <label for="category" class="form-label">Category</label>
-        <select id="category" name="wallpaper[category]" class="form-select">
+        <select
+          id="category"
+          name="wallpaper[category]"
+          class="form-select"
+          required
+        >
           <!-- Display the previously selected category -->
           <option value="<%= wallpaper.category %>" selected>
             <%= wallpaper.category %>
@@ -64,12 +80,14 @@
           <option value="<%= el %>"><%= el %></option>
           <% }); %>
         </select>
+        <div class="invalid-feedback">Please select a category.</div>
       </div>
 
       <div class="mb-3">
         <label for="tags" class="form-label">Tags</label>
         <input type="text" id="tags" name="wallpaper[tags]" class="form-control"
-        value="<%= wallpaper.tags.join(", ") %>" />
+        required value="<%= wallpaper.tags.join(", ") %>" />
+        <div class="invalid-feedback">Tags cannot be empty.</div>
       </div>
 
       <button class="btn btn-dark w-100">Update</button>
