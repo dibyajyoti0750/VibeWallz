@@ -1,33 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h3>Edit your wallpaper</h3>
+<% layout("/layouts/boilerplate") %>
+
+<h2 class="text-center sub-heading">Edit Your Wallpaper</h2>
+
+<div class="container d-flex justify-content-center align-items-center mb-5">
+  <div
+    class="card p-4 shadow-sm rounded-4"
+    style="max-width: 500px; width: 100%"
+  >
     <form method="post" action="/wallpapers/<%= wallpaper._id %>?_method=PUT">
-      <input
-        type="url"
-        name="wallpaper[image]"
-        value="<%= wallpaper.image %>"
-      />
-      <input
-        type="text"
-        name="wallpaper[title]"
-        value="<%= wallpaper.title %>"
-      />
-      <textarea name="wallpaper[description]">
+      <div class="mb-3">
+        <label for="image" class="form-label">Image URL</label>
+        <input
+          type="url"
+          id="image"
+          name="wallpaper[image]"
+          class="form-control"
+          value="<%= wallpaper.image %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="wallpaper[title]"
+          class="form-control"
+          value="<%= wallpaper.title %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          name="wallpaper[description]"
+          class="form-control"
+          rows="3"
+        >
 <%= wallpaper.description %></textarea
-      >
-      <input
-        type="text"
-        name="wallpaper[category]"
-        value="<%= wallpaper.category %>"
-      />
-      <input type="text" name="wallpaper[tags]" value="<%= wallpaper.tags %>" />
-      <button>Edit</button>
+        >
+      </div>
+
+      <% const categories = ["Nature", "Abstract", "Anime", "Technology",
+      "Cars", "Architecture", "Minimalist", "Space", "Animals", "Fantasy"];
+      const filteredCategories = categories.filter(el => el !==
+      wallpaper.category); %>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select id="category" name="wallpaper[category]" class="form-select">
+          <option value="<%= wallpaper.category %>" selected>
+            <%= wallpaper.category %>
+          </option>
+
+          <% filteredCategories.forEach(el => { %>
+          <option value="<%= el %>"><%= el %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="tags" class="form-label">Tags</label>
+        <input type="text" id="tags" name="wallpaper[tags]" class="form-control"
+        value="<%= wallpaper.tags.join(", ") %>" />
+      </div>
+
+      <button class="btn btn-dark w-100">Update</button>
     </form>
-  </body>
-</html>
+  </div>
+</div>
+
+<style>
+  body {
+    background: #f8f9fa;
+    color: #333;
+  }
+
+  .sub-heading {
+    margin: 1.5rem 0;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .form-label {
+    font-weight: 500;
+    color: #555;
+  }
+
+  .form-control {
+    border: 1px solid #ddd;
+    background: white;
+    color: #333;
+  }
+
+  .form-select {
+    border: 1px solid #ddd;
+    color: #333;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  }
+
+  .btn-dark {
+    background-color: #333;
+    border: none;
+  }
+
+  .btn-dark:hover {
+    background-color: #000;
+  }
+</style>

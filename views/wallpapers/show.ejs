@@ -1,17 +1,85 @@
 <% layout("/layouts/boilerplate") %>
-<h3>Wallpaper Details</h3>
-<ul>
-  <li><%= wallpaper.title %></li>
-  <li><%= wallpaper.description %></li>
-  <li><%= wallpaper.category %></li>
-  <li><%= wallpaper.downloads %></li>
-  <li><%= wallpaper.views %></li>
-  <li><%= wallpaper.likes %></li>
-  <li><%= wallpaper.createdAt.toLocaleString() %></li>
-</ul>
 
-<a href="/wallpapers/<%= wallpaper._id %>/edit">Edit</a>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="p-4" style="max-width: 650px; width: 100%">
+    <!-- Wallpaper Image -->
+    <div class="text-center">
+      <img
+        src="<%= wallpaper.image %>"
+        alt="Wallpaper"
+        class="img-fluid rounded-3 shadow-sm"
+        style="width: 100%; height: auto; max-height: 90vh"
+      />
+    </div>
 
-<form method="post" action="/wallpapers/<%= wallpaper._id %>?_method=DELETE">
-  <button>Delete</button>
-</form>
+    <!-- Details -->
+    <ul class="mt-4 px-0" style="list-style: none">
+      <li><strong>Title:</strong> <%= wallpaper.title %></li>
+      <li><strong>Description:</strong> <%= wallpaper.description %></li>
+      <li><strong>Category:</strong> <%= wallpaper.category %></li>
+      <li><strong>Downloads:</strong> <%= wallpaper.downloads %></li>
+      <li><strong>Views:</strong> <%= wallpaper.views %></li>
+      <li><strong>Likes:</strong> <%= wallpaper.likes %></li>
+      <li>
+        <strong>Uploaded On:</strong> <%= wallpaper.createdAt.toLocaleString()
+        %>
+      </li>
+    </ul>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+      <a
+        href="/wallpapers/<%= wallpaper._id %>/edit"
+        class="btn btn-primary w-45"
+        >Edit</a
+      >
+
+      <form
+        method="post"
+        action="/wallpapers/<%= wallpaper._id %>?_method=DELETE"
+        class="w-45"
+      >
+        <button class="btn btn-dark w-100">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    background: #f8f9fa;
+    color: #333;
+  }
+
+  ul {
+    padding: 0;
+    font-size: 1rem;
+  }
+
+  ul li {
+    margin-bottom: 8px;
+  }
+
+  ul li strong {
+    color: #555;
+  }
+
+  .btn {
+    padding: 10px;
+    font-weight: 500;
+    border-radius: 8px;
+  }
+
+  .btn-dark {
+    background-color: #333;
+    border: none;
+  }
+
+  .btn-dark:hover {
+    background-color: #000;
+  }
+
+  .w-45 {
+    width: 48%;
+  }
+</style>

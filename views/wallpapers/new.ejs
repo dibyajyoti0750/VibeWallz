@@ -1,30 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h3>Upload wallpaper</h3>
+<% layout("/layouts/boilerplate") %>
+
+<h2 class="text-center sub-heading">
+  Showcase your stunning wallpapers, effortlessly.
+</h2>
+
+<div class="container d-flex justify-content-center align-items-center mb-5">
+  <div
+    class="card p-4 shadow-sm rounded-4"
+    style="max-width: 500px; width: 100%"
+  >
     <form action="/wallpapers" method="post">
-      <input type="url" name="wallpaper[image]" placeholder="Enter image URL" />
-      <input type="text" name="wallpaper[title]" placeholder="Enter title" />
-      <textarea
-        name="wallpaper[description]"
-        placeholder="Describe your image"
-      ></textarea>
-      <input
-        type="text"
-        name="wallpaper[category]"
-        placeholder="e.g. Nature, Abstract, Anime"
-      />
-      <input
-        type="text"
-        name="wallpaper[tags]"
-        placeholder="e.g. sunset, beach, landscape"
-      />
-      <button>Upload</button>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image URL</label>
+        <input
+          type="url"
+          id="image"
+          name="wallpaper[image]"
+          class="form-control"
+          placeholder="Enter image URL"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="wallpaper[title]"
+          class="form-control"
+          placeholder="Enter title"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          name="wallpaper[description]"
+          class="form-control"
+          placeholder="Describe your image"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select id="category" name="wallpaper[category]" class="form-select">
+          <option value="" disabled selected>Select a category</option>
+          <option value="Nature">Nature</option>
+          <option value="Abstract">Abstract</option>
+          <option value="Anime">Anime</option>
+          <option value="Technology">Technology</option>
+          <option value="Cars">Cars</option>
+          <option value="Architecture">Architecture</option>
+          <option value="Minimalist">Minimalist</option>
+          <option value="Space">Space</option>
+          <option value="Animals">Animals</option>
+          <option value="Fantasy">Fantasy</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="tags" class="form-label">Tags</label>
+        <input
+          type="text"
+          id="tags"
+          name="wallpaper[tags]"
+          class="form-control"
+          placeholder="e.g. sunset, beach, landscape"
+        />
+      </div>
+
+      <button class="btn btn-dark w-100">Upload</button>
     </form>
-  </body>
-</html>
+  </div>
+</div>
+
+<style>
+  body {
+    background: #f8f9fa;
+    color: #333;
+  }
+
+  .sub-heading {
+    margin: 1.5rem 0;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .form-label {
+    font-weight: 500;
+    color: #555;
+  }
+
+  .form-control {
+    border: 1px solid #ddd;
+    background: white;
+    color: #333;
+  }
+
+  .form-select {
+    border: 1px solid #ddd;
+    color: #333;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  }
+
+  .btn-dark {
+    background-color: #333;
+    border: none;
+  }
+
+  .btn-dark:hover {
+    background-color: #000;
+  }
+</style>

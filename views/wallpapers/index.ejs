@@ -1,56 +1,41 @@
 <% layout("/layouts/boilerplate") %>
 <main>
-  <div class="container mt-2">
+  <div class="container mt-4 mb-5">
     <div class="row g-4" data-masonry='{"percentPosition": true}'>
       <% for(let wallpaper of wallpapers) { %>
       <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-        <div
-          class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative"
-          data-orientation="portrait"
-        >
-          <img
-            loading="lazy"
-            src="<%= wallpaper.image %>"
-            class="card-img-top img-fluid"
-            alt="<%= wallpaper.title %>"
-            style="object-fit: cover"
-          />
-          <a
-            href="<%= wallpaper.image %>"
-            download
-            class="download-btn btn"
-            title="Download wallpaper"
+        <a href="/wallpapers/<%= wallpaper._id %>" class="wallpaper-link">
+          <div
+            class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative"
+            data-orientation="portrait"
           >
-            <i class="fas fa-download"></i>
-          </a>
-        </div>
+            <img
+              loading="lazy"
+              src="<%= wallpaper.image %>"
+              class="card-img-top img-fluid"
+              alt="<%= wallpaper.title %>"
+              style="object-fit: cover"
+            />
+
+            <div class="card-img-overlay"></div>
+
+            <a
+              href="<%= wallpaper.image %>"
+              download
+              class="download-btn btn"
+              title="Download wallpaper"
+            >
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+        </a>
       </div>
       <% } %>
     </div>
   </div>
 </main>
 
-<script>
-  let dropItems = document.querySelectorAll(".dropdown-item");
-
-  dropItems.forEach((drop) => {
-    drop.addEventListener("click", () => {
-      dropItems.forEach((item) => item.classList.remove("active"));
-
-      drop.classList.add("active");
-    });
-  });
-</script>
-
 <style>
-  .dropdown {
-    display: inline-block;
-  }
-
-  .nav-item.dropdown .dropdown-toggle::after {
-    vertical-align: middle;
-  }
-
   .card {
     height: 100%;
   }
