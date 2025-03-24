@@ -8,6 +8,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
+const { wallpaperSchema } = require("./schema");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wallpaperswebsite";
 
@@ -36,6 +37,16 @@ app.get("/", (req, res) => {
   res.redirect("/wallpapers");
 });
 
+const validateWallpaper = (req, res, next) => {
+  let { error } = wallpaperSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(", ");
+    throw new ExpressError(400, errMsg);
+  } else {
+    next();
+  }
+};
+
 // Index
 app.get(
   "/wallpapers",
@@ -53,23 +64,24 @@ app.get("/wallpapers/new", (req, res) => {
 // Create
 app.post(
   "/wallpapers",
+  validateWallpaper,
   wrapAsync(async (req, res, next) => {
-    if (!req.body.wallpaper) {
-      throw new ExpressError(400, "Wallpaper data is required!");
+    const { wallpaper } = req.body;
+
+    let formattedTags = [];
+    if (typeof wallpaper.tags === "string") {
+      formattedTags = wallpaper.tags
+        .split(",")
+        .map((tag) => tag.trim().toLowerCase())
+        .filter((tag, index, self) => tag && self.indexOf(tag) === index); // Remove empty & duplicate tags
     }
 
-    const { image, title, description, category, tags } = req.body.wallpaper;
     const newWallpaper = new Wallpaper({
-      image,
-      title,
-      description,
-      category,
-      tags: tags.split(",").map((tag) => tag.trim()),
+      ...wallpaper, // Spread all properties
+      tags: formattedTags, // Overwrite tags with formatted ones
     });
 
-    const savedWallpaper = await newWallpaper.save();
-    console.log(savedWallpaper);
-
+    await newWallpaper.save();
     res.redirect("/wallpapers");
   })
 );
@@ -107,27 +119,32 @@ app.get(
 // Update
 app.put(
   "/wallpapers/:id",
+  validateWallpaper,
   wrapAsync(async (req, res) => {
-    if (!req.body.wallpaper) {
-      throw new ExpressError(400, "Wallpaper data is required!");
+    const { id } = req.params;
+    const { wallpaper } = req.body;
+
+    let formattedTags = [];
+    if (typeof wallpaper.tags === "string") {
+      formattedTags = wallpaper.tags
+        .split(",")
+        .map((tag) => tag.trim().toLowerCase())
+        .filter(
+          (tag, index, self) => tag !== "" && self.indexOf(tag) === index
+        );
     }
 
-    const { id } = req.params;
-    const { image, title, description, category, tags } = req.body.wallpaper;
-    const formattedTags = tags.split(",").map((tag) => tag.trim());
     const updatedWallpaper = await Wallpaper.findByIdAndUpdate(
       id,
       {
-        image,
-        title,
-        description,
-        category,
+        ...wallpaper,
         tags: formattedTags,
       },
-      { new: true }
+      { new: true } // Return the updated document
     );
+
     console.log(updatedWallpaper);
-    res.redirect("/wallpapers");
+    res.redirect(`/wallpapers/${id}`);
   })
 );
 
@@ -152,8 +169,8 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  let { statusCode = 500, message = "Something went wrong!" } = err;
-  res.status(statusCode).send(message);
+  let { statusCode = 500, message = "Internal Server Error!" } = err;
+  res.status(statusCode).render("wallpapers/error", { statusCode, message });
 });
 
 app.listen(port, () => {
