@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="container d-flex justify-content-center align-items-center">
+<div class="container d-flex justify-content-center align-items-center mb-4">
   <div class="p-4" style="max-width: 650px; width: 100%">
     <!-- Wallpaper Image -->
     <div class="text-center">
@@ -45,6 +45,34 @@
   </div>
 </div>
 
+<hr />
+
+<div class="container mt-4 mb-4">
+  <div class="comment-box">
+    <h5 class="mb-3">Leave a Comment</h5>
+    <form
+      action="/wallpapers/<%= wallpaper._id %>/comment"
+      method="post"
+      novalidate
+      class="needs-validation"
+    >
+      <div class="mb-3">
+        <textarea
+          name="comment[text]"
+          class="form-control"
+          rows="4"
+          placeholder="Write your comment here..."
+          required
+        ></textarea>
+        <div class="invalid-feedback">
+          Please enter a comment before submitting.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-outline-dark w-100">Submit</button>
+    </form>
+  </div>
+</div>
+
 <style>
   body {
     background: #f8f9fa;
@@ -75,11 +103,17 @@
     border: none;
   }
 
-  .btn-dark:hover {
+  .btn-dark:hover,
+  .btn-outline-dark:hover {
     background-color: #000;
   }
 
   .w-45 {
     width: 48%;
+  }
+
+  .comment-box {
+    max-width: 500px;
+    margin: auto;
   }
 </style>

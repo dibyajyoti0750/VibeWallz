@@ -3,12 +3,13 @@ const app = express();
 const port = 8080;
 const mongoose = require("mongoose");
 const Wallpaper = require("./models/wallpaper");
+const Comment = require("./models/comment");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
-const { wallpaperSchema } = require("./schema");
+const { wallpaperSchema, commentSchema } = require("./schema");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wallpaperswebsite";
 
@@ -41,6 +42,16 @@ const validateWallpaper = (req, res, next) => {
   let { error } = wallpaperSchema.validate(req.body);
   if (error) {
     let errMsg = error.details.map((el) => el.message).join(", ");
+    throw new ExpressError(400, errMsg);
+  } else {
+    next();
+  }
+};
+
+const validateComment = (req, res, next) => {
+  let { error } = commentSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
     throw new ExpressError(400, errMsg);
   } else {
     next();
@@ -84,6 +95,11 @@ app.post(
     await newWallpaper.save();
     res.redirect("/wallpapers");
   })
+);
+
+// AI
+app.get("/wallpapers/ai", (req, res) =>
+  res.status(200).send("<h1>Coming Soon...</h1>")
 );
 
 // Show
@@ -161,6 +177,20 @@ app.delete(
 
     console.log(deletedWall);
     res.redirect("/wallpapers");
+  })
+);
+
+// Comment
+app.post(
+  "/wallpapers/:id/comment",
+  validateComment,
+  wrapAsync(async (req, res) => {
+    let wallpaper = await Wallpaper.findById(req.params.id);
+    let newComment = new Comment(req.body.comment);
+    wallpaper.comments.push(newComment);
+    await newComment.save();
+    await wallpaper.save();
+    res.redirect(`/wallpapers/${wallpaper._id}`);
   })
 );
 

@@ -14,3 +14,9 @@ module.exports.wallpaperSchema = Joi.object({
       .required(),
   }).required(),
 });
+
+module.exports.commentSchema = Joi.object({
+  comment: Joi.object({
+    text: Joi.string().required(),
+  }).required(),
+});
