@@ -1,0 +1,48 @@
+<% if (success && success.length) { %>
+<div
+  class="alert alert-success alert-dismissible fade show custom-alert"
+  role="alert"
+>
+  <strong>🎉 Success!</strong> <%= success %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %> <% if (deleted && deleted.length) { %>
+<div
+  class="alert alert-danger alert-dismissible fade show custom-alert-deleted"
+  role="alert"
+>
+  <strong>❌ Deleted!</strong> <%= deleted %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %> <% if (error && error.length) { %>
+<div
+  class="alert alert-danger alert-dismissible fade show custom-alert-error"
+  role="alert"
+>
+  <strong>⚠️ Error!</strong> <%= error %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %>
+
+<style>
+  .custom-alert {
+    background-color: #d4edda; /* Light green */
+    border-left: 5px solid #28a745; /* Dark green border */
+    color: #155724;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-alert-deleted,
+  .custom-alert-error {
+    background-color: #f8d7da; /* Light red */
+    border-left: 5px solid #dc3545; /* Dark red border */
+    color: #721c24;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+</style>

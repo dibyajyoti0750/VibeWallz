@@ -26,6 +26,8 @@ router.post(
     wallpaper.comments.push(newComment);
     await newComment.save();
     await wallpaper.save();
+
+    req.flash("success", "Comment added successfully!");
     res.redirect(`/wallpapers/${wallpaper._id}`);
   })
 );
@@ -44,6 +46,7 @@ router.delete(
       throw new ExpressError(404, "Comment not found!");
     }
 
+    req.flash("deleted", "Comment removed successfully.");
     res.redirect(`/wallpapers/${id}`);
   })
 );

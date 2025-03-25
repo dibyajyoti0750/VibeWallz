@@ -50,6 +50,8 @@ router.post(
     });
 
     await newWallpaper.save();
+
+    req.flash("success", "Wallpaper uploaded successfully!");
     res.redirect("/wallpapers");
   })
 );
@@ -62,7 +64,8 @@ router.get(
     const wallpaper = await Wallpaper.findById(id).populate("comments");
 
     if (!wallpaper) {
-      throw new ExpressError(404, "Wallpaper not found!");
+      req.flash("error", "The wallpaper you're looking for doesn't exist!");
+      return res.redirect("/wallpapers");
     }
 
     res.render("wallpapers/show", { wallpaper });
@@ -77,7 +80,8 @@ router.get(
     const wallpaper = await Wallpaper.findById(id);
 
     if (!wallpaper) {
-      throw new ExpressError(404, "Wallpaper not found!");
+      req.flash("error", "The wallpaper you're looking for doesn't exist!");
+      return res.redirect("/wallpapers");
     }
 
     res.render("wallpapers/edit", { wallpaper, hideFooter: true });
@@ -112,6 +116,7 @@ router.put(
     );
 
     console.log(updatedWallpaper);
+    req.flash("success", "Wallpaper updated successfully!");
     res.redirect(`/wallpapers/${id}`);
   })
 );
@@ -128,6 +133,7 @@ router.delete(
     }
 
     console.log(deletedWall);
+    req.flash("deleted", "Wallpaper deleted successfully!");
     res.redirect("/wallpapers");
   })
 );
