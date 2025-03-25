@@ -51,7 +51,7 @@
   <div class="comment-box">
     <h5 class="mb-3">Leave a Comment</h5>
     <form
-      action="/wallpapers/<%= wallpaper._id %>/comment"
+      action="/wallpapers/<%= wallpaper._id %>/comments"
       method="post"
       novalidate
       class="needs-validation"
@@ -71,6 +71,35 @@
       <button type="submit" class="btn btn-outline-dark w-100">Submit</button>
     </form>
   </div>
+</div>
+
+<hr />
+
+<p class="fw-bold fs-4 mb-3">Comments</p>
+<div class="row g-3 mb-5">
+  <% for(let comment of wallpaper.comments) { %>
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 rounded-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h5 class="card-title fw-semibold">John Doe</h5>
+          <p class="card-text small text-end text-secondary mb-1">
+            <%= comment.createdAt.toLocaleString() %>
+          </p>
+        </div>
+        <p class="card-text text-muted"><%= comment.text %></p>
+        <form
+          method="post"
+          action="/wallpapers/<%= wallpaper._id %>/comments/<%= comment._id %>?_method=DELETE"
+        >
+          <button type="submit" class="btn btn-dark btn-sm delete-btn">
+            Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <% } %>
 </div>
 
 <style>
@@ -115,5 +144,11 @@
   .comment-box {
     max-width: 500px;
     margin: auto;
+  }
+
+  .delete-btn {
+    font-size: 1rem;
+    padding: 2px 8px;
+    height: 2rem;
   }
 </style>

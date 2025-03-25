@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const Comment = require("./comment");
 
 const wallpaperSchema = new Schema({
   title: { type: String, required: true },
@@ -21,6 +22,12 @@ const wallpaperSchema = new Schema({
     },
   ],
   createdAt: { type: Date, default: Date.now },
+});
+
+wallpaperSchema.post("findOneAndDelete", async (wallpaper) => {
+  if (wallpaper) {
+    await Comment.deleteMany({ _id: { $in: wallpaper.comments } });
+  }
 });
 
 module.exports = mongoose.model("Wallpaper", wallpaperSchema);
