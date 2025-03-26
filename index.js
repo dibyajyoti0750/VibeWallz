@@ -8,11 +8,17 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
-const wallpapers = require("./routes/wallpaper");
-const comments = require("./routes/comment");
-const ai = require("./routes/ai");
+
+const wallpaperRouter = require("./routes/wallpaper");
+const commentRouter = require("./routes/comment");
+const aiRouter = require("./routes/ai");
+const userRouter = require("./routes/user");
+
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wallpaperswebsite";
 
@@ -58,13 +64,30 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.get("/demouser", async (req, res) => {
+  let fakeUser = new User({
+    email: "demo@gmail.com",
+    username: "demoUser",
+  });
+
+  let registeredUser = await User.register(fakeUser, "helloworld");
+  res.send(registeredUser);
+});
+
 app.get("/", (req, res) => {
   res.redirect("/wallpapers");
 });
 
-app.use("/wallpapers", wallpapers);
-app.use("/wallpapers/:id/comments", comments);
-app.use("/ai", ai);
+app.use("/wallpapers", wallpaperRouter);
+app.use("/wallpapers/:id/comments", commentRouter);
+app.use("/ai", aiRouter);
+app.use("/", userRouter);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found!"));

@@ -1,0 +1,126 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+
+  .form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .password-group {
+    position: relative;
+  }
+
+  .eye-icon {
+    font-size: 1.1rem;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+</style>
+
+<div class="form-container">
+  <h1>Sign up on VibeWallz</h1>
+  <form action="/signup" method="post" novalidate class="needs-validation">
+    <div class="mb-3">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Please enter a username.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Please enter a valid email address.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password">Set Password</label>
+      <div class="password-group">
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          required
+        />
+        <i
+          class="far fa-eye eye-icon"
+          id="togglePassword"
+          style="display: none"
+        ></i>
+      </div>
+      <div class="invalid-feedback">Password cannot be empty.</div>
+    </div>
+
+    <button class="btn btn-success submit-btn">Submit</button>
+  </form>
+</div>
+
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+
+  passwordInput.addEventListener("input", () => {
+    togglePassword.style.display = "block";
+  });
+
+  togglePassword.addEventListener("click", () => {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      togglePassword.classList.replace("fa-eye", "fa-eye-slash");
+    } else {
+      passwordInput.type = "password";
+      togglePassword.classList.replace("fa-eye-slash", "fa-eye");
+    }
+  });
+</script>
