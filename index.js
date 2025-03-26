@@ -29,6 +29,7 @@ async function main() {
 }
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Middleware to parse JSON sent by axios post req
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 

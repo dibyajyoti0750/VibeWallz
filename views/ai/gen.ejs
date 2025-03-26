@@ -1,3 +1,69 @@
 <% layout("/layouts/boilerplate") %>
-<h1 class="text-center m-5">Comming soon...</h1>
+
+<style>
+  .btn-primary {
+    background: #007bff;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+</style>
+
+<div class="container d-flex justify-content-center mt-4 mb-5">
+  <div>
+    <h2 class="text-center mb-4 text-dark">Create Stunning AI Wallpapers</h2>
+
+    <form id="imageForm" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="imagePrompt"
+          name="prompt"
+          placeholder="Type a prompt ..."
+          required
+        />
+        <div class="invalid-feedback">
+          Please enter a prompt to generate an image.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100" id="generateButton">
+        Generate Wallpaper
+      </button>
+    </form>
+
+    <div class="text-center mt-4">
+      <!-- Spinner -->
+      <div
+        id="loadingSpinner"
+        class="spinner-border text-primary"
+        role="status"
+        style="display: none"
+      >
+        <span class="visually-hidden">Generating...</span>
+      </div>
+
+      <!-- Generated Image -->
+      <img
+        id="generatedImage"
+        class="img-fluid rounded shadow-sm mt-3"
+        src=""
+        alt="Generated AI Image"
+        style="display: none"
+      />
+
+      <!-- Download Button -->
+      <button
+        class="btn btn-success w-100 mt-3"
+        id="downloadButton"
+        style="display: none"
+      >
+        Download Wallpaper
+      </button>
+    </div>
+  </div>
+</div>
+
 <script src="/js/gen.js"></script>
