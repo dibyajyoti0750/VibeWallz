@@ -42,6 +42,11 @@
 
   .card-img-top {
     height: 100%;
+    position: relative;
+
+    /* loading placeholder */
+    background: #f0f0f0;
+    min-height: 200px;
   }
 
   .card[data-orientation="portrait"] img {
@@ -83,15 +88,5 @@
       font-size: 1.2rem;
       padding: 0.5rem;
     }
-  }
-
-  .card-img-top {
-    position: relative;
-  }
-
-  /* loading placeholder */
-  .card-img-top {
-    background: #f0f0f0;
-    min-height: 200px;
   }
 </style>

@@ -19,7 +19,7 @@ const validateWallpaper = (req, res, next) => {
 router.get(
   "/",
   wrapAsync(async (req, res) => {
-    const wallpapers = await Wallpaper.find({});
+    const wallpapers = await Wallpaper.find({}).sort({ createdAt: -1 }); // Sorts in descending order (newest first)
     res.render("wallpapers/index", { wallpapers });
   })
 );

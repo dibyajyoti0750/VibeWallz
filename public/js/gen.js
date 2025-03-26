@@ -26,10 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       generatedImage.src = response.data;
-
       generateButton.disabled = false;
-      generatedImage.style.display = "block";
-      downloadButton.style.display = "block";
+
+      generatedImage.onload = () => {
+        generatedImage.style.display = "block";
+        downloadButton.style.display = "block";
+      };
+
       loadingSpinner.style.display = "none";
     } catch (error) {
       console.error("Error generating image:", error);

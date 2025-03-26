@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync");
+const Wallpaper = require("../models/wallpaper");
 const { GoogleGenAI } = require("@google/genai");
 const cloudinary = require("cloudinary").v2;
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_KEY });
@@ -51,6 +52,16 @@ router.post(
         imgURL = uploadResult.secure_url;
       }
     }
+
+    const aiWallpaper = new Wallpaper({
+      title: prompt,
+      description: "AI Generated Image",
+      image: imgURL,
+      category: "AI",
+      tags: "AI",
+    });
+
+    await aiWallpaper.save();
 
     res.json(imgURL);
   })
