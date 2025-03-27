@@ -57,8 +57,8 @@
 </style>
 
 <div class="form-container">
-  <h1>Sign up on VibeWallz</h1>
-  <form action="/signup" method="post" novalidate class="needs-validation">
+  <h1>Login to VibeWallz</h1>
+  <form action="/login" method="post" novalidate class="needs-validation">
     <div class="mb-3">
       <label for="username">Username</label>
       <input
@@ -68,23 +68,11 @@
         class="form-control"
         required
       />
-      <div class="invalid-feedback">Please enter a username.</div>
+      <div class="invalid-feedback">Please enter your username.</div>
     </div>
 
     <div class="mb-3">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        class="form-control"
-        required
-      />
-      <div class="invalid-feedback">Please enter a valid email address.</div>
-    </div>
-
-    <div class="mb-3">
-      <label for="password">Set Password</label>
+      <label for="password">Password</label>
       <div class="password-group">
         <input
           type="password"
@@ -102,7 +90,11 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success submit-btn">Submit</button>
+    <button type="submit" class="btn btn-primary submit-btn">Login</button>
+
+    <div class="text-center mt-3">
+      <small>Don't have an account? <a href="/signup">Sign up</a></small>
+    </div>
   </form>
 </div>
 

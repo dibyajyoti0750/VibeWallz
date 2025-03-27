@@ -13,7 +13,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
@@ -43,18 +43,38 @@
         </li>
       </ul>
 
-      <div class="search-form">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" />
+      <!-- Search Bar -->
+      <div
+        class="d-flex flex-grow-1 justify-content-center ms-lg-3 my-2 my-lg-0"
+      >
+        <form class="d-flex w-100" role="search">
+          <input
+            class="form-control flex-grow-1 me-2"
+            type="search"
+            placeholder="Search"
+          />
           <button class="btn btn-outline-dark" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
       </div>
 
-      <div class="ms-auto mt-md-0 mt-lg-0 mt-3 mb-md-0 mb-lg-0 mb-2">
-        <form action="/wallpapers/new" method="get" class="container-fluid">
-          <button class="btn btn-dark w-100" type="submit">Upload</button>
+      <!-- Authentication Links -->
+      <div class="navbar-nav ms-lg-3">
+        <% if(!currUser) { %>
+        <a class="nav-link" href="/signup">Sign up</a>
+        <a class="nav-link" href="/login">Login</a>
+        <% } %> <% if(currUser) { %>
+        <a class="nav-link" href="/logout">Log out</a>
+        <% } %>
+      </div>
+
+      <!-- Upload Button -->
+      <div class="d-flex justify-content-end ms-lg-3">
+        <form action="/wallpapers/new" method="get">
+          <% if(currUser) { %>
+          <button class="btn btn-dark" type="submit">Upload</button>
+          <% } %>
         </form>
       </div>
     </div>

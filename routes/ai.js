@@ -3,6 +3,7 @@ const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync");
 const Wallpaper = require("../models/wallpaper");
 const { GoogleGenAI } = require("@google/genai");
+const { isLoggedIn } = require("../middleware");
 const cloudinary = require("cloudinary").v2;
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_KEY });
 
@@ -12,12 +13,13 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 });
 
-router.get("/", (req, res) => {
+router.get("/", isLoggedIn, (req, res) => {
   res.render("ai/gen", { hideFooter: true });
 });
 
 router.post(
   "/generate",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     const { prompt } = req.body;
 

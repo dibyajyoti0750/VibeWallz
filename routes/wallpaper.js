@@ -4,6 +4,7 @@ const wrapAsync = require("../utils/wrapAsync");
 const ExpressError = require("../utils/ExpressError");
 const { wallpaperSchema } = require("../schema");
 const Wallpaper = require("../models/wallpaper");
+const { isLoggedIn } = require("../middleware");
 
 const validateWallpaper = (req, res, next) => {
   let { error } = wallpaperSchema.validate(req.body);
@@ -25,13 +26,14 @@ router.get(
 );
 
 // New
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
   res.render("wallpapers/new", { hideFooter: true });
 });
 
 // Create
 router.post(
   "/",
+  isLoggedIn,
   validateWallpaper,
   wrapAsync(async (req, res, next) => {
     const { wallpaper } = req.body;
@@ -75,6 +77,7 @@ router.get(
 // Edit
 router.get(
   "/:id/edit",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const wallpaper = await Wallpaper.findById(id);
@@ -91,6 +94,7 @@ router.get(
 // Update
 router.put(
   "/:id",
+  isLoggedIn,
   validateWallpaper,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
@@ -124,6 +128,7 @@ router.put(
 // Destroy
 router.delete(
   "/:id",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     let deletedWall = await Wallpaper.findByIdAndDelete(id);

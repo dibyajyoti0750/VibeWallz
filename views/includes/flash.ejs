@@ -22,6 +22,14 @@
   <strong>⚠️ Error!</strong> <%= error %>
   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
+<% } %> <% if (authError && authError.length) { %>
+<div
+  class="alert alert-warning alert-dismissible fade show custom-alert-auth"
+  role="alert"
+>
+  <strong>🔒 Access Denied!</strong> <%= authError %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
 <% } %>
 
 <style>
@@ -40,6 +48,16 @@
     background-color: #f8d7da; /* Light red */
     border-left: 5px solid #dc3545; /* Dark red border */
     color: #721c24;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-alert-auth {
+    background-color: #fff3cd; /* Light yellow */
+    border-left: 5px solid #ffa500; /* Orange border */
+    color: #856404; /* Dark yellow text */
     font-weight: bold;
     padding: 15px;
     border-radius: 8px;
