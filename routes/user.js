@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/user");
 const wrapAsync = require("../utils/wrapAsync");
 const passport = require("passport");
+const { saveRedirectUrl } = require("../middleware");
 
 router.get("/signup", (req, res) => {
   res.render("users/signup", { hideFooter: true });
@@ -27,15 +28,20 @@ router.get(
 
 router.post(
   "/signup",
-  wrapAsync(async (req, res) => {
+  wrapAsync(async (req, res, next) => {
     try {
       let { username, email, password } = req.body;
       let newUser = new User({ email, username });
       let registeredUser = await User.register(newUser, password);
       console.log(registeredUser);
 
-      req.flash("success", "Signup successful. Welcome to VibeWallz!");
-      res.redirect("/wallpapers");
+      req.login(registeredUser, (err) => {
+        if (err) {
+          return next(err);
+        }
+        req.flash("success", "Signup successful. Welcome to VibeWallz!");
+        res.redirect("/wallpapers");
+      });
     } catch (error) {
       req.flash("error", error.message);
       res.redirect("/signup");
@@ -49,13 +55,15 @@ router.get("/login", (req, res) => {
 
 router.post(
   "/login",
+  saveRedirectUrl,
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true,
   }),
   async (req, res) => {
     req.flash("success", "Login successful. Welcome back to VibeWallz!");
-    res.redirect("/wallpapers");
+    let redirectUrl = res.locals.redirectUrl || "/wallpapers";
+    res.redirect(redirectUrl);
   }
 );
 
