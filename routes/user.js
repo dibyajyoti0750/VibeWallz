@@ -32,6 +32,8 @@ router.post(
       let { username, email, password } = req.body;
       let newUser = new User({ email, username });
       let registeredUser = await User.register(newUser, password);
+      console.log(registeredUser);
+
       req.flash("success", "Signup successful. Welcome to VibeWallz!");
       res.redirect("/wallpapers");
     } catch (error) {
