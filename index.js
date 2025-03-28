@@ -102,16 +102,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/demouser", async (req, res) => {
-  let fakeUser = new User({
-    email: "demo@gmail.com",
-    username: "demoUser",
-  });
-
-  let registeredUser = await User.register(fakeUser, "helloworld");
-  res.send(registeredUser);
-});
-
 app.get("/", (req, res) => {
   res.redirect("/wallpapers");
 });
