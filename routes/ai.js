@@ -14,13 +14,22 @@ cloudinary.config({
 });
 
 router.get("/", isLoggedIn, (req, res) => {
-  res.render("ai/gen", { hideFooter: true });
+  return res.status(403).json({
+    message: "I am still working on this feature. It will be live soon.",
+  });
+
+  /* res.render("ai/gen", { hideFooter: true }); */
 });
 
 router.post(
   "/generate",
   isLoggedIn,
   wrapAsync(async (req, res) => {
+    return res.status(403).json({
+      message: "I am still working on this feature. It will be live soon.",
+    });
+
+    /*
     const { prompt } = req.body;
 
     if (!prompt) {
@@ -66,6 +75,7 @@ router.post(
     await aiWallpaper.save();
 
     res.json(imgURL);
+    */
   })
 );
 
