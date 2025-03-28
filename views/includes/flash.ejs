@@ -1,36 +1,4 @@
 <% if (success && success.length) { %>
-<div
-  class="alert alert-success alert-dismissible fade show custom-alert"
-  role="alert"
->
-  <strong>🎉 Success!</strong> <%= success %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-</div>
-<% } %> <% if (deleted && deleted.length) { %>
-<div
-  class="alert alert-danger alert-dismissible fade show custom-alert-deleted"
-  role="alert"
->
-  <strong>❌ Deleted!</strong> <%= deleted %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-</div>
-<% } %> <% if (error && error.length) { %>
-<div
-  class="alert alert-danger alert-dismissible fade show custom-alert-error"
-  role="alert"
->
-  <strong>⚠️ Error!</strong> <%= error %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-</div>
-<% } %> <% if (authError && authError.length) { %>
-<div
-  class="alert alert-warning alert-dismissible fade show custom-alert-auth"
-  role="alert"
->
-  <strong>🔒 Access Denied!</strong> <%= authError %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-</div>
-<% } %>
 
 <style>
   .custom-alert {
@@ -64,3 +32,36 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
 </style>
+
+<div
+  class="alert alert-success alert-dismissible fade show custom-alert"
+  role="alert"
+>
+  <strong>🎉 Success!</strong> <%= success %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %> <% if (deleted && deleted.length) { %>
+<div
+  class="alert alert-danger alert-dismissible fade show custom-alert-deleted"
+  role="alert"
+>
+  <strong>❌ Deleted!</strong> <%= deleted %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %> <% if (error && error.length) { %>
+<div
+  class="alert alert-danger alert-dismissible fade show custom-alert-error"
+  role="alert"
+>
+  <strong>⚠️ Error!</strong> <%= error %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %> <% if (authError && authError.length) { %>
+<div
+  class="alert alert-warning alert-dismissible fade show custom-alert-auth"
+  role="alert"
+>
+  <strong>🔒 Access Denied!</strong> <%= authError %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<% } %>
