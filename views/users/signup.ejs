@@ -54,10 +54,50 @@
     font-size: 1rem;
     transition: background 0.3s ease;
   }
+
+  .divider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .divider-one,
+  .divider-two {
+    background-color: #6c757d;
+    height: 1px;
+    flex: 1;
+    margin: 0 0.625rem 0.8rem 0.625rem;
+  }
+
+  .create-account-text {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 10px;
+  }
 </style>
 
 <div class="form-container">
   <h1>Sign up on VibeWallz</h1>
+
+  <!-- Login with Google Section -->
+  <div class="text-center mb-4">
+    <a href="/auth/google" class="btn btn-outline-success w-100">
+      <i class="fab fa-google"></i> Continue with Google
+    </a>
+  </div>
+
+  <div class="divider-container">
+    <div class="divider-one"></div>
+    <p class="text-secondary">OR</p>
+    <div class="divider-two"></div>
+  </div>
+
+  <p class="create-account-text">Create a new account</p>
+
+  <!-- Local Signup Section -->
   <form action="/signup" method="post" novalidate class="needs-validation">
     <div class="mb-3">
       <label for="username">Username</label>
@@ -102,7 +142,9 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success submit-btn">Submit</button>
+    <button type="submit" class="btn btn-success submit-btn">
+      Create Account
+    </button>
   </form>
 </div>
 
@@ -111,7 +153,7 @@
   const passwordInput = document.getElementById("password");
 
   passwordInput.addEventListener("input", () => {
-    togglePassword.style.display = "block";
+    togglePassword.style.display = passwordInput.value ? "block" : "none";
   });
 
   togglePassword.addEventListener("click", () => {

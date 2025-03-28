@@ -8,6 +8,23 @@ router.get("/signup", (req, res) => {
   res.render("users/signup", { hideFooter: true });
 });
 
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  (req, res) => {
+    req.flash("success", "Login successful. Welcome to VibeWallz!");
+    res.redirect("/wallpapers");
+  }
+);
+
 router.post(
   "/signup",
   wrapAsync(async (req, res) => {
@@ -18,8 +35,6 @@ router.post(
       req.flash("success", "Signup successful. Welcome to VibeWallz!");
       res.redirect("/wallpapers");
     } catch (error) {
-      console.log(error.message);
-
       req.flash("error", error.message);
       res.redirect("/signup");
     }

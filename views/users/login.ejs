@@ -54,10 +54,50 @@
     font-size: 1rem;
     transition: background 0.3s ease;
   }
+
+  .divider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .divider-one,
+  .divider-two {
+    background-color: #6c757d;
+    height: 1px;
+    flex: 1;
+    margin: 0 0.625rem 0.8rem 0.625rem;
+  }
+
+  .create-account-text {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 10px;
+  }
 </style>
 
 <div class="form-container">
   <h1>Login to VibeWallz</h1>
+
+  <!-- Google Login Section -->
+  <div class="text-center mb-4">
+    <a href="/auth/google" class="btn btn-outline-primary w-100">
+      <i class="fab fa-google"></i> Continue with Google
+    </a>
+  </div>
+
+  <div class="divider-container">
+    <div class="divider-one"></div>
+    <p class="text-secondary">OR</p>
+    <div class="divider-two"></div>
+  </div>
+
+  <p class="create-account-text">Sign in to your account</p>
+
+  <!-- Traditional Login Section -->
   <form action="/login" method="post" novalidate class="needs-validation">
     <div class="mb-3">
       <label for="username">Username</label>
@@ -73,7 +113,7 @@
 
     <div class="mb-3">
       <label for="password">Password</label>
-      <div class="password-group">
+      <div class="password-group position-relative">
         <input
           type="password"
           name="password"
@@ -90,7 +130,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary submit-btn">Login</button>
+    <button type="submit" class="btn btn-primary w-100">Login</button>
 
     <div class="text-center mt-3">
       <small>Don't have an account? <a href="/signup">Sign up</a></small>
@@ -103,7 +143,7 @@
   const passwordInput = document.getElementById("password");
 
   passwordInput.addEventListener("input", () => {
-    togglePassword.style.display = "block";
+    togglePassword.style.display = passwordInput.value ? "block" : "none";
   });
 
   togglePassword.addEventListener("click", () => {
