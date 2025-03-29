@@ -138,6 +138,43 @@
         <div class="invalid-feedback">Tags cannot be empty.</div>
       </div>
 
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          type="text"
+          id="location"
+          name="wallpaper[location]"
+          class="form-control"
+          value="<%= wallpaper.location %>"
+          required
+        />
+        <div class="invalid-feedback">Location cannot be empty.</div>
+      </div>
+
+      <div class="mb-3 form-check">
+        <% if (wallpaper.isFree) { %>
+        <input
+          type="checkbox"
+          id="isFree"
+          name="wallpaper[isFree]"
+          class="form-check-input"
+          value="true"
+          checked
+        />
+        <% } else { %>
+        <input
+          type="checkbox"
+          id="isFree"
+          name="wallpaper[isFree]"
+          class="form-check-input"
+          value="true"
+        />
+        <% } %>
+        <label for="isFree" class="form-check-label">
+          This wallpaper is free to use for personal and commercial purposes.
+        </label>
+      </div>
+
       <button class="btn btn-dark w-100">Update</button>
     </form>
   </div>
