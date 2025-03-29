@@ -1,20 +1,9 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync");
-const ExpressError = require("../utils/ExpressError");
-const { commentSchema } = require("../schema");
 const Comment = require("../models/comment");
 const Wallpaper = require("../models/wallpaper");
-
-const validateComment = (req, res, next) => {
-  let { error } = commentSchema.validate(req.body);
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
+const { validateComment } = require("../middleware");
 
 // Comment
 router.post(
@@ -43,7 +32,8 @@ router.delete(
     let deletedComm = await Comment.findByIdAndDelete(commentId);
 
     if (!deletedComm) {
-      throw new ExpressError(404, "Comment not found!");
+      req.flash("error", "Comment not found!");
+      return res.redirect(`/wallpapers/${id}`);
     }
 
     req.flash("deleted", "Comment removed successfully.");
