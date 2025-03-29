@@ -14,22 +14,21 @@ cloudinary.config({
 });
 
 router.get("/", isLoggedIn, (req, res) => {
-  return res.status(403).json({
+  /* return res.status(403).json({
     message: "I am still working on this feature. It will be live soon.",
-  });
+  }); */
 
-  /* res.render("ai/gen", { hideFooter: true }); */
+  res.render("ai/gen", { hideFooter: true });
 });
 
 router.post(
   "/generate",
   isLoggedIn,
   wrapAsync(async (req, res) => {
-    return res.status(403).json({
+    /* return res.status(403).json({
       message: "I am still working on this feature. It will be live soon.",
-    });
+    }); */
 
-    /*
     const { prompt } = req.body;
 
     if (!prompt) {
@@ -68,6 +67,9 @@ router.post(
       title: prompt,
       description: "AI Generated Image",
       image: imgURL,
+      owner: req.user._id,
+      location: "Howrah, West Bengal",
+      isFree: true,
       category: "AI",
       tags: "AI",
     });
@@ -75,7 +77,6 @@ router.post(
     await aiWallpaper.save();
 
     res.json(imgURL);
-    */
   })
 );
 
