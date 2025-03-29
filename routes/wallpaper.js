@@ -1,20 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync");
-const ExpressError = require("../utils/ExpressError");
-const { wallpaperSchema } = require("../schema");
 const Wallpaper = require("../models/wallpaper");
-const { isLoggedIn } = require("../middleware");
-
-const validateWallpaper = (req, res, next) => {
-  let { error } = wallpaperSchema.validate(req.body);
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(", ");
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
+const { isLoggedIn, isOwner, validateWallpaper } = require("../middleware");
 
 // Index
 router.get(
@@ -76,7 +64,6 @@ router.get(
       return res.redirect("/wallpapers");
     }
 
-    console.log(wallpaper);
     res.render("wallpapers/show", { wallpaper });
   })
 );
@@ -85,6 +72,7 @@ router.get(
 router.get(
   "/:id/edit",
   isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const wallpaper = await Wallpaper.findById(id);
@@ -102,10 +90,13 @@ router.get(
 router.put(
   "/:id",
   isLoggedIn,
+  isOwner,
   validateWallpaper,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const { wallpaper } = req.body;
+
+    let setIsFree = wallpaper.isFree === undefined ? false : true;
 
     let formattedTags = [];
     if (typeof wallpaper.tags === "string") {
@@ -122,6 +113,7 @@ router.put(
       {
         ...wallpaper,
         tags: formattedTags,
+        isFree: setIsFree,
       },
       { new: true } // Return the updated document
     );
@@ -136,15 +128,17 @@ router.put(
 router.delete(
   "/:id",
   isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    let deletedWall = await Wallpaper.findByIdAndDelete(id);
+    let deletingWall = await Wallpaper.findByIdAndDelete(id);
 
-    if (!deletedWall) {
-      throw new ExpressError(404, "Wallpaper not found!");
+    if (!deletingWall) {
+      req.flash("error", "The wallpaper you're looking for doesn't exist!");
+      return res.redirect("/wallpapers");
     }
 
-    console.log(deletedWall);
+    console.log(deletingWall);
     req.flash("deleted", "Wallpaper deleted successfully!");
     res.redirect("/wallpapers");
   })
