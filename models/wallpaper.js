@@ -22,6 +22,15 @@ const wallpaperSchema = new Schema(
         ref: "Comment",
       },
     ],
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    isFree: { type: Boolean },
   },
   { timestamps: true } // Enables createdAt and updatedAt automatically
 );
