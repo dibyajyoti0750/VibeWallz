@@ -12,6 +12,9 @@ module.exports.wallpaperSchema = Joi.object({
         Joi.array().items(Joi.string()) // Accepts an array after processing
       )
       .required(),
+
+    location: Joi.string().required(),
+    isFree: Joi.boolean(),
   }).required(),
 });
 
