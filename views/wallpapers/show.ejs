@@ -157,7 +157,7 @@
       </li>
     </ul>
 
-    <!-- Buttons -->
+    <% if(currUser && currUser._id.equals(wallpaper.owner._id)) { %>
     <div class="d-flex justify-content-between mt-4">
       <a
         href="/wallpapers/<%= wallpaper._id %>/edit"
@@ -173,6 +173,7 @@
         <button class="btn btn-dark w-100">Delete</button>
       </form>
     </div>
+    <% } %>
   </div>
 </div>
 
