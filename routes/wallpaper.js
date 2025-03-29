@@ -38,6 +38,8 @@ router.post(
   wrapAsync(async (req, res, next) => {
     const { wallpaper } = req.body;
 
+    let setIsFree = wallpaper.isFree === undefined ? false : true;
+
     let formattedTags = [];
     if (typeof wallpaper.tags === "string") {
       formattedTags = wallpaper.tags
@@ -49,6 +51,8 @@ router.post(
     const newWallpaper = new Wallpaper({
       ...wallpaper, // Spread all properties
       tags: formattedTags, // Overwrite tags with formatted ones
+      isFree: setIsFree,
+      owner: req.user._id,
     });
 
     await newWallpaper.save();
@@ -63,13 +67,16 @@ router.get(
   "/:id",
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const wallpaper = await Wallpaper.findById(id).populate("comments");
+    const wallpaper = await Wallpaper.findById(id)
+      .populate("comments")
+      .populate("owner");
 
     if (!wallpaper) {
       req.flash("error", "The wallpaper you're looking for doesn't exist!");
       return res.redirect("/wallpapers");
     }
 
+    console.log(wallpaper);
     res.render("wallpapers/show", { wallpaper });
   })
 );
