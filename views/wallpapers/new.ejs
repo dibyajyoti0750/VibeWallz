@@ -142,6 +142,32 @@
         <div class="invalid-feedback">Please add some tags.</div>
       </div>
 
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          type="text"
+          id="location"
+          name="wallpaper[location]"
+          class="form-control"
+          placeholder="e.g. New Delhi, India"
+          required
+        />
+        <div class="invalid-feedback">Location cannot be empty.</div>
+      </div>
+
+      <div class="mb-3 form-check">
+        <input
+          type="checkbox"
+          id="isFree"
+          name="wallpaper[isFree]"
+          class="form-check-input"
+          value="true"
+        />
+        <label for="isFree" class="form-check-label">
+          This wallpaper is free to use for personal and commercial purposes.
+        </label>
+      </div>
+
       <button class="btn btn-dark w-100">Upload</button>
     </form>
   </div>
