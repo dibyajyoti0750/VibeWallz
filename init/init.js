@@ -12,7 +12,7 @@ async function main() {
 
     sampleData = sampleData.map((obj) => ({
       ...obj,
-      owner: "67e6cda38a1746781fc1fe7a",
+      owner: "67e986c39dc6880d3ebc35d5",
       location: "Howrah, West Bengal",
       isFree: true,
     }));
