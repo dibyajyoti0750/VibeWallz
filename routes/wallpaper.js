@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync");
-const Wallpaper = require("../models/wallpaper");
 const { isLoggedIn, isOwner, validateWallpaper } = require("../middleware");
 const wallpaperController = require("../controllers/wallpapers");
 
