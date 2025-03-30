@@ -52,21 +52,23 @@
     height: 2rem;
   }
 
-  /* General text styling */
   .details-list {
     padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .details-list li {
     font-size: 1rem;
     color: #666;
-    margin-bottom: 0.5rem; /* Add spacing between list items */
     display: flex;
-    align-items: center; /* Align icons with text */
-    gap: 0.5rem; /* Space between icon and text */
+    flex-wrap: wrap; /* Ensures content wraps if needed */
+    align-items: center;
+    gap: 0.5rem;
+    word-wrap: break-word;
   }
 
-  /* Category & Tags Styling */
   .detail-badge {
     display: inline-block;
     background: #f1f3f5;
@@ -76,6 +78,9 @@
     font-size: 0.875rem;
     font-weight: 500;
     border: 0.031rem solid #dee2e6;
+    word-break: break-word; /* Ensures long words wrap */
+    white-space: normal; /* Allows normal wrapping */
+    max-width: 100%; /* Prevents overflow */
   }
 </style>
 
