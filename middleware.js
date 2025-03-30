@@ -1,6 +1,7 @@
 const Wallpaper = require("./models/wallpaper");
 const ExpressError = require("./utils/ExpressError");
 const { wallpaperSchema, commentSchema } = require("./schema");
+const Comment = require("./models/comment");
 
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -49,4 +50,14 @@ module.exports.validateComment = (req, res, next) => {
   } else {
     next();
   }
+};
+
+module.exports.isCommentAuthor = async (req, res, next) => {
+  const { id, commentId } = req.params;
+  const comment = await Comment.findById(commentId);
+  if (!comment.author.equals(res.locals.currUser._id)) {
+    req.flash("authError", "You are not the author of this comment.");
+    return res.redirect(`/wallpapers/${id}`);
+  }
+  next();
 };

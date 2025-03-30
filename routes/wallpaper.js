@@ -56,7 +56,12 @@ router.get(
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const wallpaper = await Wallpaper.findById(id)
-      .populate("comments")
+      .populate({
+        path: "comments",
+        populate: {
+          path: "author",
+        },
+      })
       .populate("owner");
 
     if (!wallpaper) {

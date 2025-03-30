@@ -179,6 +179,7 @@
 
 <hr />
 
+<% if(currUser) { %>
 <div class="container mt-4 mb-4">
   <div class="comment-box">
     <h5 class="mb-3">Leave a Comment</h5>
@@ -204,8 +205,8 @@
     </form>
   </div>
 </div>
-
 <hr />
+<% } %>
 
 <p class="fw-bold fs-4 mb-3">Comments</p>
 <div class="row g-3 mb-5">
@@ -214,8 +215,10 @@
     <div class="card shadow-sm border-0 rounded-3">
       <div class="card-body">
         <div class="d-flex justify-content-between">
-          <h5 class="card-title fw-semibold">John Doe</h5>
-          <p class="card-text small text-end text-secondary mb-1">
+          <h5 class="card-title fw-semibold">
+            @<%= comment.author.username %>
+          </h5>
+          <p class="card-text fw-light small text-end text-secondary mb-1">
             <%= comment.createdAt.toLocaleString() %>
           </p>
         </div>
