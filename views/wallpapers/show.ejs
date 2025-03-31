@@ -90,10 +90,19 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
       <div class="d-flex gap-2">
         <button class="btn btn-light">
-          <i class="fa-regular fa-eye"></i> <%= wallpaper.views %>
+          <i class="far fa-eye"></i> <%= wallpaper.views %>
         </button>
-        <button class="btn btn-light">
-          <i class="fa-regular fa-heart"></i> <%= wallpaper.likes %>
+        <button
+          class="btn btn-light like-btn"
+          data-wallpaper-id="<%= wallpaper._id %>"
+        >
+          <% if (currUser && wallpaper.likes.includes(currUser._id.toString()))
+          { %>
+          <i class="fas fa-heart" style="color: #ff3a78"></i>
+          <% } else { %>
+          <i class="far fa-heart"></i>
+          <% } %>
+          <span><%= wallpaper.likes.length %></span>
         </button>
       </div>
       <button class="btn btn-success">Download</button>
@@ -213,7 +222,7 @@
 <hr />
 <% } %>
 
-<p class="fw-bold fs-4 mb-3">Comments</p>
+<p class="fw-bold fs-4 mb-3"><%= wallpaper.comments.length %> Comments</p>
 <div class="row g-3 mb-5">
   <% for(let comment of wallpaper.comments) { %>
   <div class="col-md-4">
@@ -241,3 +250,5 @@
   </div>
   <% } %>
 </div>
+
+<script src="/js/show.js"></script>
