@@ -9,6 +9,31 @@
   .btn-primary:hover {
     background: #0056b3;
   }
+
+  .skeleton-loader {
+    background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Spinner positioned at top-left of skeleton */
+  #loadingSpinner {
+    width: 2rem;
+    height: 2rem;
+    color: #0056b3;
+    border-width: 0.25rem;
+    top: 1.25rem;
+    left: 1.25rem;
+  }
 </style>
 
 <div class="container d-flex justify-content-center mt-4 mb-5">
@@ -17,16 +42,15 @@
 
     <form id="imageForm" class="needs-validation" novalidate>
       <div class="mb-3">
-        <input
-          type="text"
+        <textarea
           class="form-control"
-          id="imagePrompt"
           name="prompt"
-          placeholder="Type a prompt ..."
+          id="imagePrompt"
+          placeholder="Describe your image..."
           required
-        />
+        ></textarea>
         <div class="invalid-feedback">
-          Please enter a prompt to generate an image.
+          Please describe your image before generating.
         </div>
       </div>
       <button type="submit" class="btn btn-primary w-100" id="generateButton">
@@ -34,11 +58,18 @@
       </button>
     </form>
 
-    <div class="text-center mt-4">
-      <!-- Spinner -->
+    <div class="text-center mt-4 position-relative">
+      <!-- Skeleton Loader -->
+      <div
+        id="imageSkeleton"
+        class="skeleton-loader rounded shadow-sm w-100"
+        style="height: 32.3rem; display: none"
+      ></div>
+
+      <!-- Spinner (Overlay - Top Left) -->
       <div
         id="loadingSpinner"
-        class="spinner-border text-primary"
+        class="spinner-border position-absolute"
         role="status"
         style="display: none"
       >
