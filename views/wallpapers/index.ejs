@@ -1,6 +1,14 @@
 <% layout("/layouts/boilerplate") %>
 
 <style>
+  .container {
+    flex: 1;
+  }
+
+  .wallpaper-link {
+    text-decoration: none;
+  }
+
   .card {
     height: 100%;
   }
@@ -32,10 +40,29 @@
     z-index: 1;
   }
 
+  .card:hover {
+    cursor: pointer;
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: black;
+    opacity: 0;
+    transition: all 0.2s ease;
+    pointer-events: none; /* Ensures the pseudo-element does not block interactions */
+  }
+
+  .card:hover::after {
+    opacity: 0.2;
+  }
+
   .download-btn {
     position: absolute;
-    bottom: 10px;
+    bottom: -30px;
     right: 10px;
+    opacity: 0;
     z-index: 2;
     padding: 5px 10px;
     border: none;
@@ -43,15 +70,29 @@
     transition: all 0.3s ease;
   }
 
+  .card:hover .download-btn {
+    bottom: 10px; /* Move to original position */
+    opacity: 1;
+  }
+
   .download-btn:hover {
-    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
   }
 
   @media (orientation: portrait) {
     .download-btn {
+      opacity: 1;
       font-size: 1.2rem;
       padding: 0.5rem;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 2;
+      padding: 5px 10px;
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
     }
   }
 </style>
@@ -73,8 +114,6 @@
               alt="<%= wallpaper.title %>"
               style="object-fit: cover"
             />
-
-            <div class="card-img-overlay"></div>
 
             <a
               href="<%= wallpaper.image %>"
