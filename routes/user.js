@@ -24,11 +24,13 @@ router
 
 router.get(
   "/auth/google",
+  saveRedirectUrl,
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 router.get(
   "/auth/google/callback",
+  saveRedirectUrl,
   passport.authenticate("google", {
     failureRedirect: "/login",
     failureFlash: true,
