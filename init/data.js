@@ -20,7 +20,7 @@ module.exports.sampleData = [
     ],
     views: 231,
     downloads: 68,
-    likes: 43,
+    likes: [],
   },
   {
     title: "Web-Slinger in Action - The Amazing Spider-Man",
@@ -43,7 +43,7 @@ module.exports.sampleData = [
     ],
     views: 456,
     downloads: 167,
-    likes: 89,
+    likes: [],
   },
   {
     title: "Goku Ultra Instinct - Tranquil Power",
@@ -66,7 +66,7 @@ module.exports.sampleData = [
     ],
     views: 312,
     downloads: 102,
-    likes: 67,
+    likes: [],
   },
   {
     title: "Fated Connection - Under the Twilight Sky",
@@ -89,7 +89,7 @@ module.exports.sampleData = [
     ],
     views: 378,
     downloads: 145,
-    likes: 76,
+    likes: [],
   },
   {
     title: "Tanjiro's Flame - Unyielding Spirit",
@@ -112,7 +112,7 @@ module.exports.sampleData = [
     ],
     views: 189,
     downloads: 54,
-    likes: 32,
+    likes: [],
   },
   {
     title: "Neon Rebellion - Cyberpunk Dystopia",
@@ -135,7 +135,7 @@ module.exports.sampleData = [
     ],
     views: 134,
     downloads: 47,
-    likes: 29,
+    likes: [],
   },
   {
     title: "Sunshine Girl - A Moment of Warmth",
@@ -158,7 +158,7 @@ module.exports.sampleData = [
     ],
     views: 287,
     downloads: 91,
-    likes: 56,
+    likes: [],
   },
   {
     title: "Nezuko's Serenity - Moonlit Beauty",
@@ -181,7 +181,7 @@ module.exports.sampleData = [
     ],
     views: 421,
     downloads: 123,
-    likes: 98,
+    likes: [],
   },
   {
     title: "Goku Ultra Instinct - The Calm Before the Storm",
@@ -204,7 +204,7 @@ module.exports.sampleData = [
     ],
     views: 256,
     downloads: 89,
-    likes: 45,
+    likes: [],
   },
   {
     title: "Whispers of the Wind - Pastel Serenity",
@@ -227,6 +227,6 @@ module.exports.sampleData = [
     ],
     views: 512,
     downloads: 178,
-    likes: 112,
+    likes: [],
   },
 ];
