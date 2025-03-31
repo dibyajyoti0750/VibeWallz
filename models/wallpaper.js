@@ -15,7 +15,12 @@ const wallpaperSchema = new Schema(
     tags: [{ type: String }],
     views: { type: Number, default: 0 },
     downloads: { type: Number, default: 0 },
-    likes: { type: Number, default: 0 },
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     comments: [
       {
         type: Schema.Types.ObjectId,
