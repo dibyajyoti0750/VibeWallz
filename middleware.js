@@ -7,6 +7,14 @@ module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.redirectUrl = req.originalUrl;
     req.flash("authError", "Please log in to continue.");
+
+    // Detect if the request is an AJAX request
+    if (req.xhr || req.headers.accept.indexOf("json") > -1) {
+      return res
+        .status(401)
+        .json({ error: "Unauthorized", redirectUrl: "/login" });
+    }
+
     return res.redirect("/login");
   }
   next();

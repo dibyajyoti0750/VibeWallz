@@ -31,12 +31,24 @@ module.exports.renderLoginForm = (req, res) => {
 module.exports.login = async (req, res) => {
   req.flash("success", "Login successful. Welcome back to VibeWallz!");
   let redirectUrl = res.locals.redirectUrl || "/wallpapers";
+
+  // If the redirect URL is a 'like' route, remove '/like' and redirect to the wallpaper page instead
+  if (redirectUrl.includes("/like")) {
+    redirectUrl = redirectUrl.replace("/like", "");
+  }
+
   res.redirect(redirectUrl);
 };
 
 module.exports.googleLogin = async (req, res) => {
   req.flash("success", "Login successful. Welcome to VibeWallz!");
-  res.redirect("/wallpapers");
+  let redirectUrl = res.locals.redirectUrl || "/wallpapers";
+
+  if (redirectUrl.includes("/like")) {
+    redirectUrl = redirectUrl.replace("/like", "");
+  }
+
+  res.redirect(redirectUrl);
 };
 
 module.exports.logout = (req, res, next) => {
