@@ -13,6 +13,12 @@ router
     wrapAsync(wallpaperController.uploadWallpaper)
   );
 
+router.post(
+  "/:id/like",
+  isLoggedIn,
+  wrapAsync(wallpaperController.likeWallpaper)
+);
+
 router.get("/new", isLoggedIn, wallpaperController.renderNewForm);
 
 router

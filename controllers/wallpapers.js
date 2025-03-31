@@ -28,6 +28,24 @@ module.exports.showWallpaper = async (req, res) => {
   res.render("wallpapers/show", { wallpaper });
 };
 
+module.exports.likeWallpaper = async (req, res) => {
+  const { id } = req.params;
+  const userId = req.user._id;
+  let wallpaper = await Wallpaper.findById(id);
+
+  let index = wallpaper.likes.indexOf(userId);
+
+  if (index === -1) {
+    wallpaper.likes.push(userId);
+  } else {
+    wallpaper.likes.splice(index, 1);
+  }
+
+  await wallpaper.save();
+
+  res.status(200).json({ success: true, likes: wallpaper.likes.length });
+};
+
 module.exports.uploadWallpaper = async (req, res, next) => {
   const { wallpaper } = req.body;
 
