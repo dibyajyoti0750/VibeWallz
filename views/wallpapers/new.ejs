@@ -62,11 +62,12 @@
       method="post"
       novalidate
       class="needs-validation"
+      enctype="multipart/form-data"
     >
       <div class="mb-3">
-        <label for="image" class="form-label">Image URL</label>
+        <label for="image" class="form-label">Upload Image</label>
         <input
-          type="url"
+          type="file"
           id="image"
           name="wallpaper[image]"
           class="form-control"
