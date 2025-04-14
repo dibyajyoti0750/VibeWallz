@@ -1,4 +1,5 @@
 const Wallpaper = require("../models/wallpaper");
+const cloudinary = require("../cloudConfig");
 
 module.exports.index = async (req, res) => {
   const wallpapers = await Wallpaper.find({}).sort({ createdAt: -1 }); // Sorts in descending order (newest first)
@@ -49,21 +50,43 @@ module.exports.likeWallpaper = async (req, res) => {
 module.exports.uploadWallpaper = async (req, res, next) => {
   const { wallpaper } = req.body;
 
-  let setIsFree = wallpaper.isFree === undefined ? false : true;
+  // Validate file upload
+  if (!req.file) {
+    req.flash("error", "Image is required!");
+    return res.redirect("/wallpapers/new");
+  }
 
+  const file = req.file;
+  const b64 = Buffer.from(file.buffer).toString("base64");
+  const dataURI = `data:${file.mimetype};base64,${b64}`;
+  const result = await cloudinary.uploader.upload(dataURI, {
+    folder: "VibeWallz",
+  });
+
+  const imageData = {
+    url: result.secure_url,
+    filename: result.public_id,
+  };
+
+  // Format tags
   let formattedTags = [];
   if (typeof wallpaper.tags === "string") {
     formattedTags = wallpaper.tags
       .split(",")
       .map((tag) => tag.trim().toLowerCase())
-      .filter((tag, index, self) => tag && self.indexOf(tag) === index); // Remove empty & duplicate tags
+      .filter((tag, index, self) => tag && self.indexOf(tag) === index);
   }
 
+  // Determine isFree
+  const setIsFree = wallpaper.isFree === undefined ? false : true;
+
+  // Create new wallpaper doc
   const newWallpaper = new Wallpaper({
-    ...wallpaper, // Spread all properties
-    tags: formattedTags, // Overwrite tags with formatted ones
+    ...wallpaper,
+    tags: formattedTags,
     isFree: setIsFree,
     owner: req.user._id,
+    image: imageData,
   });
 
   await newWallpaper.save();

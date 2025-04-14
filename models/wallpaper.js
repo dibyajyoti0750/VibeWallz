@@ -7,9 +7,8 @@ const wallpaperSchema = new Schema(
     title: { type: String, required: true },
     description: String,
     image: {
-      type: String,
-      default: "https://placehold.co/600x800/000000/FFF",
-      set: (v) => (v === "" ? "https://placehold.co/600x800/000000/FFF" : v),
+      url: String,
+      filename: String,
     },
     category: { type: String },
     tags: [{ type: String }],
