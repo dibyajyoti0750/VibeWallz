@@ -121,6 +121,31 @@ module.exports.updateWallpaper = async (req, res) => {
       .filter((tag, index, self) => tag !== "" && self.indexOf(tag) === index);
   }
 
+  const existingWallpaper = await Wallpaper.findById(id);
+
+  // If a new image is uploaded
+  if (req.file) {
+    // Delete the old image from Cloudinary
+    if (existingWallpaper.image && existingWallpaper.image.filename) {
+      await cloudinary.uploader.destroy(existingWallpaper.image.filename);
+    }
+
+    // Upload the new image
+    const file = req.file;
+    const b64 = Buffer.from(file.buffer).toString("base64");
+    const dataURI = `data:${file.mimetype};base64,${b64}`;
+    const result = await cloudinary.uploader.upload(dataURI, {
+      folder: "VibeWallz",
+    });
+
+    // Update image info
+    wallpaper.image = {
+      url: result.secure_url,
+      filename: result.public_id,
+    };
+  }
+
+  // Perform update
   const updatedWallpaper = await Wallpaper.findByIdAndUpdate(
     id,
     {
@@ -128,24 +153,30 @@ module.exports.updateWallpaper = async (req, res) => {
       tags: formattedTags,
       isFree: setIsFree,
     },
-    { new: true } // Return the updated document
+    { new: true }
   );
 
-  console.log(updatedWallpaper);
   req.flash("success", "Wallpaper updated successfully!");
   res.redirect(`/wallpapers/${id}`);
 };
 
 module.exports.deleteWallpaper = async (req, res) => {
   const { id } = req.params;
-  let deletingWall = await Wallpaper.findByIdAndDelete(id);
+  const deletingWall = await Wallpaper.findById(id);
 
   if (!deletingWall) {
     req.flash("error", "The wallpaper you're looking for doesn't exist!");
     return res.redirect("/wallpapers");
   }
 
-  console.log(deletingWall);
+  // Delete the image from Cloudinary
+  if (deletingWall.image && deletingWall.image.filename) {
+    await cloudinary.uploader.destroy(deletingWall.image.filename);
+  }
+
+  // Delete the document from MongoDB
+  await Wallpaper.findByIdAndDelete(id);
+
   req.flash("deleted", "Wallpaper deleted successfully!");
   res.redirect("/wallpapers");
 };

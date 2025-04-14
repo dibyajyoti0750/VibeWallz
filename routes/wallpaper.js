@@ -31,6 +31,7 @@ router
   .put(
     isLoggedIn,
     isOwner,
+    upload.single("wallpaper[image]"),
     validateWallpaper,
     wrapAsync(wallpaperController.updateWallpaper)
   )
