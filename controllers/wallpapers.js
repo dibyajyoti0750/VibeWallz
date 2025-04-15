@@ -104,7 +104,17 @@ module.exports.renderEditForm = async (req, res) => {
     return res.redirect("/wallpapers");
   }
 
-  res.render("wallpapers/edit", { wallpaper, hideFooter: true });
+  let originalImageUrl = wallpaper.image.url;
+  originalImageUrl = originalImageUrl.replace(
+    "/upload/",
+    "/upload/w_250,h_400,c_limit/"
+  );
+
+  res.render("wallpapers/edit", {
+    wallpaper,
+    originalImageUrl,
+    hideFooter: true,
+  });
 };
 
 module.exports.updateWallpaper = async (req, res) => {

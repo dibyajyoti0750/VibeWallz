@@ -63,6 +63,15 @@
       enctype="multipart/form-data"
     >
       <div class="mb-3">
+        <label class="form-label">Original Wallpaper</label><br />
+        <img
+          src="<%= originalImageUrl %>"
+          alt="Original Wallpaper"
+          class="img-fluid rounded"
+        />
+      </div>
+
+      <div class="mb-3">
         <label for="image" class="form-label">Upload New Image</label>
         <input
           type="file"
@@ -70,9 +79,7 @@
           name="wallpaper[image]"
           class="form-control"
           required
-          value="<%= wallpaper.image %>"
         />
-        <div class="invalid-feedback">Image URL cannot be empty.</div>
       </div>
 
       <div class="mb-3">
