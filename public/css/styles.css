@@ -120,3 +120,12 @@ body {
 .text-dark {
   color: #2d3436 !important;
 }
+
+/* Map */
+#map {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  border-radius: 8px;
+}

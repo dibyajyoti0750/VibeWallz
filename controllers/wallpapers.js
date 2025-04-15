@@ -26,7 +26,7 @@ module.exports.showWallpaper = async (req, res) => {
     return res.redirect("/wallpapers");
   }
 
-  res.render("wallpapers/show", { wallpaper });
+  res.render("wallpapers/show", { wallpaper, mapToken: process.env.MAP_TOKEN });
 };
 
 module.exports.likeWallpaper = async (req, res) => {

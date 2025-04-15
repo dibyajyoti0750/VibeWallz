@@ -158,12 +158,12 @@
         <i class="fa-solid fa-lock"></i>
         <span>Licensed under the VibeWallz+ License</span>
       </li>
-      <% } %>
-
+      <% } %> <% if (wallpaper.location) { %>
       <li>
         <i class="fa-solid fa-location-dot"></i>
         <span><%= wallpaper.location %></span>
       </li>
+      <% } %>
 
       <li>
         <strong>Uploaded On:</strong>
@@ -191,9 +191,8 @@
   </div>
 </div>
 
-<hr />
-
 <% if(currUser) { %>
+<hr />
 <div class="container mt-4 mb-4">
   <div class="comment-box">
     <h5 class="mb-3">Leave a Comment</h5>
@@ -219,11 +218,12 @@
     </form>
   </div>
 </div>
-<hr />
-<% } %>
 
-<p class="fw-bold fs-4 mb-3"><%= wallpaper.comments.length %> Comments</p>
+<% } %> <% if(wallpaper.comments.length > 0 ) { %>
+<hr />
 <div class="row g-3 mb-5">
+  <p class="fw-bold fs-4 mb-3"><%= wallpaper.comments.length %> Comments</p>
+
   <% for(let comment of wallpaper.comments) { %>
   <div class="col-md-4">
     <div class="card shadow-sm border-0 rounded-3">
@@ -250,5 +250,22 @@
   </div>
   <% } %>
 </div>
+<% } %>
+
+<div class="container text-center">
+  <div id="map" class="d-inline-block w-100" style="max-width: 800px"></div>
+</div>
+
+<script>
+  let mapToken = "<%= mapToken %>";
+  console.log(mapToken);
+  mapboxgl.accessToken = mapToken;
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v12",
+    center: [88.3629, 22.5744],
+    zoom: 9,
+  });
+</script>
 
 <script src="/js/show.js"></script>
