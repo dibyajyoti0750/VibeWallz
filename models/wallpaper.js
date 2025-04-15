@@ -32,7 +32,7 @@ const wallpaperSchema = new Schema(
     },
     location: {
       type: String,
-      required: true,
+      required: false,
     },
     isFree: { type: Boolean },
   },

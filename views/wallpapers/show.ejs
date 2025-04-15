@@ -1,5 +1,9 @@
 <% layout("/layouts/boilerplate") %>
 
+<script>
+  window.mapToken = "<%= mapToken %>";
+</script>
+
 <style>
   body {
     background: #f8f9fa;
@@ -250,22 +254,11 @@
   </div>
   <% } %>
 </div>
-<% } %>
-
+<% } %> <% if (wallpaper.location) { %>
 <div class="container text-center">
   <div id="map" class="d-inline-block w-100" style="max-width: 800px"></div>
 </div>
+<% } %>
 
-<script>
-  let mapToken = "<%= mapToken %>";
-  console.log(mapToken);
-  mapboxgl.accessToken = mapToken;
-  const map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/mapbox/streets-v12",
-    center: [88.3629, 22.5744],
-    zoom: 9,
-  });
-</script>
-
+<script src="/js/map.js"></script>
 <script src="/js/show.js"></script>

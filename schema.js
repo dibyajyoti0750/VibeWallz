@@ -8,7 +8,7 @@ module.exports.wallpaperSchema = Joi.object({
     tags: Joi.alternatives()
       .try(Joi.string(), Joi.array().items(Joi.string()))
       .required(),
-    location: Joi.string().required(),
+    location: Joi.string().optional().allow(""),
     isFree: Joi.boolean(),
     // Removed `image` — since it's added later by controller
   }).required(),
