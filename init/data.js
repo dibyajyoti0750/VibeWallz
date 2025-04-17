@@ -30,7 +30,7 @@ module.exports.sampleData = [
       "A thrilling close-up of Spider-Man mid-swing through the neon-lit city, his suit reflecting the glow of skyscrapers. Raindrops scatter as he propels forward, eyes locked on his next target, embodying speed, agility, and heroism.",
     image: {
       filename: "wallpaperImage",
-      url: "https://res.cloudinary.com/dqw6dicdi/image/upload/v1743354743/marvels-spider-man-1080x1920-11811_cycxcd.jpg",
+      url: "https://res.cloudinary.com/dqw6dicdi/image/upload/v1744906400/Flux_Dev_The_Amazing_Spider_Man_Cinematic_real_life_movie_like_3_gdjmhv.jpg",
     },
     category: "Superhero",
     tags: [
