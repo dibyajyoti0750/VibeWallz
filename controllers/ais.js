@@ -73,7 +73,7 @@ module.exports.generateImage = async (req, res) => {
     tags: "AI",
   });
 
-  let savedAiImg = await aiWallpaper.save();
+  await aiWallpaper.save();
 
   res.json(imgURL);
 };
