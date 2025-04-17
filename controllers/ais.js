@@ -41,6 +41,7 @@ module.exports.generateImage = async (req, res) => {
   });
 
   let imgURL = null;
+  let imgName = null;
 
   for (const part of response.candidates[0].content.parts) {
     if (part.text) {
@@ -54,21 +55,25 @@ module.exports.generateImage = async (req, res) => {
       );
 
       imgURL = uploadResult.secure_url;
+      imgName = uploadResult.public_id;
     }
   }
 
   const aiWallpaper = new Wallpaper({
     title: prompt,
     description: "AI Generated Image",
-    image: imgURL,
+    image: {
+      url: imgURL,
+      filename: imgName,
+    },
     owner: req.user._id,
-    location: "Howrah, West Bengal",
+    location: "",
     isFree: true,
     category: "AI",
     tags: "AI",
   });
 
-  await aiWallpaper.save();
+  let savedAiImg = await aiWallpaper.save();
 
   res.json(imgURL);
 };
