@@ -34,6 +34,17 @@ const wallpaperSchema = new Schema(
       type: String,
       required: false,
     },
+    geometry: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        required: false,
+      },
+      coordinates: {
+        type: [Number],
+        required: false,
+      },
+    },
     isFree: { type: Boolean },
   },
   { timestamps: true } // Enables createdAt and updatedAt automatically

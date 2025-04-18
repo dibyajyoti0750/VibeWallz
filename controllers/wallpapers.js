@@ -58,9 +58,6 @@ module.exports.uploadWallpaper = async (req, res, next) => {
     })
     .send();
 
-  console.log(response.body.features[0]);
-  res.send("done");
-
   const { wallpaper } = req.body;
 
   // Validate file upload
@@ -100,9 +97,11 @@ module.exports.uploadWallpaper = async (req, res, next) => {
     isFree: setIsFree,
     owner: req.user._id,
     image: imageData,
+    geometry: response.body.features[0].geometry,
   });
 
-  await newWallpaper.save();
+  const savedWallpaper = await newWallpaper.save();
+  console.log(savedWallpaper);
 
   req.flash("success", "Wallpaper uploaded successfully!");
   res.redirect("/wallpapers");
