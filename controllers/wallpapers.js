@@ -1,5 +1,8 @@
 const Wallpaper = require("../models/wallpaper");
 const cloudinary = require("../cloudConfig");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapToken = process.env.MAP_TOKEN;
+const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
   const wallpapers = await Wallpaper.find({}).sort({ createdAt: -1 }); // Sorts in descending order (newest first)
@@ -48,6 +51,16 @@ module.exports.likeWallpaper = async (req, res) => {
 };
 
 module.exports.uploadWallpaper = async (req, res, next) => {
+  let response = await geocodingClient
+    .forwardGeocode({
+      query: req.body.wallpaper.location,
+      limit: 2,
+    })
+    .send();
+
+  console.log(response.body.features[0]);
+  res.send("done");
+
   const { wallpaper } = req.body;
 
   // Validate file upload
