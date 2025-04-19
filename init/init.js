@@ -13,7 +13,8 @@ async function main() {
     sampleData = sampleData.map((obj) => ({
       ...obj,
       owner: "67e986c39dc6880d3ebc35d5",
-      location: "Howrah, West Bengal",
+      location: "Kolkata, West Bengal",
+      geometry: { type: "Point", coordinates: [88.3629, 22.5744] },
       isFree: true,
     }));
 
