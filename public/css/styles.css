@@ -170,6 +170,12 @@ body::-webkit-scrollbar {
   opacity: 0.8;
 }
 
+.filter img {
+  width: 25px;
+  margin-bottom: 0.3rem;
+  object-fit: contain;
+}
+
 .filter i {
   font-size: 1rem;
   margin-bottom: 0.2rem;
