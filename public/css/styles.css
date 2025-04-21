@@ -16,6 +16,12 @@ body::-webkit-scrollbar {
   font-size: 2rem;
 }
 
+.nav-link.active {
+  font-weight: 600;
+  color: #000 !important;
+  border-bottom: 2px solid #000;
+}
+
 .upload-btn {
   width: 100%;
 }
@@ -110,6 +116,8 @@ body::-webkit-scrollbar {
 .btn-dark {
   background-color: #2d3436;
   border: none;
+  border-radius: 12px;
+  font-weight: 500;
   transition: all 0.3s ease;
 }
 
@@ -133,4 +141,57 @@ body::-webkit-scrollbar {
   max-width: 800px;
   margin: auto;
   border-radius: 8px;
+}
+
+/* Filters */
+#filters {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  scrollbar-width: none; /* Firefox */
+}
+
+#filters::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.filter {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+  padding: 0.5rem 0.75rem;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  opacity: 0.8;
+}
+
+.filter i {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  color: #444;
+}
+
+.filter p {
+  margin: 0;
+  color: #333;
+}
+
+.filter:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.03);
+  cursor: pointer;
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  #filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    overflow-x: unset;
+  }
 }
