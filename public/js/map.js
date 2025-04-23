@@ -12,8 +12,8 @@ if (mapContainer) {
 
   const el = document.createElement("img");
   el.src = "/src/camera.png";
-  el.style.width = "1.875rem";
-  el.style.height = "1.875rem";
+  el.style.width = "3.5rem";
+  el.style.height = "3.5rem";
 
   const marker = new mapboxgl.Marker({ element: el })
     .setLngLat(wallpaper.geometry.coordinates)

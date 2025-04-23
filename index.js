@@ -23,18 +23,18 @@ const LocalStrategy = require("passport-local");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("./models/user");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wallpaperswebsite";
+const dbURI = process.env.MONGO_URI;
 
 main()
   .then(() => {
-    console.log("Connected to DB");
+    console.log("Connected to MongoDB ✅");
   })
   .catch((err) => {
-    console.log(err);
+    console.error("Failed to connect:", err);
   });
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(dbURI);
 }
 
 app.use(express.urlencoded({ extended: true }));
