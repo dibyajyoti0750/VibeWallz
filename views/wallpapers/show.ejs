@@ -254,7 +254,7 @@
         </div>
         <p class="card-text text-muted"><%= comment.text %></p>
 
-        <% if(currUser && currUser._id.equals(wallpaper.owner._id)) { %>
+        <% if(currUser && currUser._id.equals(comment.author._id)) { %>
         <form
           method="post"
           action="/wallpapers/<%= wallpaper._id %>/comments/<%= comment._id %>?_method=DELETE"
