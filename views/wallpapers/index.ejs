@@ -303,7 +303,10 @@
     </div>
 
     <div class="filter">
-      <img src="src/filterIcons/digital-transformation.png" alt="Technology Icon" />
+      <img
+        src="src/filterIcons/digital-transformation.png"
+        alt="Technology Icon"
+      />
       <p>Technology</p>
     </div>
 
@@ -397,11 +400,11 @@
     <div class="row g-3" data-masonry='{"percentPosition": true}'>
       <% for(let wallpaper of wallpapers) { %>
       <div class="col-6 col-md-2 col-sm-4">
-        <a href="/wallpapers/<%= wallpaper._id %>" class="wallpaper-link">
-          <div
-            class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative"
-            data-orientation="portrait"
-          >
+        <div
+          class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative"
+          data-orientation="portrait"
+        >
+          <a href="/wallpapers/<%= wallpaper._id %>" class="wallpaper-link">
             <img
               loading="lazy"
               src="<%= wallpaper.image.url %>"
@@ -409,16 +412,17 @@
               alt="<%= wallpaper.title %>"
               style="object-fit: cover"
             />
+          </a>
 
-            <a
-              href="<%= wallpaper.image.url %>"
-              download
-              class="download-btn btn"
-              title="Download wallpaper"
-            
-            </a>
-          </div>
-        </a>
+          <a
+            download
+            href="<%= wallpaper.image.url.replace('/upload/', `/upload/fl_attachment:${wallpaper.title.replace(/\s+/g, '_')}`) %>"
+            title="Download wallpaper"
+            class="download-btn btn"
+          >
+            <i class="fas fa-download"></i>
+          </a>
+        </div>
       </div>
       <% } %>
     </div>
