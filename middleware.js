@@ -63,9 +63,16 @@ module.exports.validateComment = (req, res, next) => {
 module.exports.isCommentAuthor = async (req, res, next) => {
   const { id, commentId } = req.params;
   const comment = await Comment.findById(commentId);
+
+  if (!comment) {
+    req.flash("error", "Comment not found.");
+    return res.redirect(`/wallpapers/${id}`);
+  }
+
   if (!comment.author.equals(res.locals.currUser._id)) {
     req.flash("authError", "You are not the author of this comment.");
     return res.redirect(`/wallpapers/${id}`);
   }
+
   next();
 };

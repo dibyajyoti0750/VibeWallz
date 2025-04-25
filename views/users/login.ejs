@@ -77,6 +77,25 @@
     color: #333;
     margin-top: 10px;
   }
+
+  .btn-google {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 0.6rem 1rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .btn-google:hover {
+    background-color: #f1f1f1;
+    border-color: #ccc;
+  }
+
+  .btn-google img {
+    margin-right: 8px;
+  }
 </style>
 
 <div class="form-container">
@@ -86,10 +105,10 @@
   <div class="text-center mb-4">
     <a
       href="/auth/google"
-      class="btn btn-light border w-100 d-flex align-items-center justify-content-center gap-2 py-2"
+      class="btn btn-google w-100 d-flex align-items-center justify-content-center gap-2 py-2"
     >
       <img src="/src/search.png" alt="Google" width="20" height="20" />
-      <span class="text-dark">Continue with Google</span>
+      <span>Continue with Google</span>
     </a>
   </div>
 

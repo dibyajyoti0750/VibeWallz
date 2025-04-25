@@ -17,13 +17,7 @@ module.exports.addComment = async (req, res) => {
 module.exports.deleteComment = async (req, res) => {
   const { id, commentId } = req.params;
 
-  let deletedComm = await Comment.findByIdAndDelete(commentId);
-
-  if (!deletedComm) {
-    req.flash("error", "Comment not found!");
-    return res.redirect(`/wallpapers/${id}`);
-  }
-
+  await Comment.findByIdAndDelete(commentId);
   await Wallpaper.findByIdAndUpdate(id, { $pull: { comments: commentId } });
 
   req.flash("deleted", "Comment removed successfully.");
