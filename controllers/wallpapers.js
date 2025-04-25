@@ -51,14 +51,35 @@ module.exports.likeWallpaper = async (req, res) => {
 };
 
 module.exports.uploadWallpaper = async (req, res, next) => {
-  let response = await geocodingClient
-    .forwardGeocode({
-      query: req.body.wallpaper.location,
-      limit: 2,
-    })
-    .send();
-
   const { wallpaper } = req.body;
+
+  if (wallpaper.location) {
+    // If location is provided, make the geocoding API call
+    let response;
+    try {
+      response = await geocodingClient
+        .forwardGeocode({
+          query: wallpaper.location,
+          limit: 2,
+        })
+        .send();
+    } catch (error) {
+      req.flash("error", "Error retrieving location data from Mapbox.");
+      return res.redirect("/wallpapers/new");
+    }
+
+    // If location is not found, handle the case
+    if (!response.body.features.length) {
+      req.flash("error", "Location not found.");
+      return res.redirect("/wallpapers/new");
+    }
+
+    // Set the location geometry from the geocoding result
+    wallpaper.geometry = response.body.features[0].geometry;
+  } else {
+    // If no location is provided, use...
+    wallpaper.geometry = { coordinates: [0, 0] }; // Default coordinates (or leave it undefined)
+  }
 
   // Validate file upload
   if (!req.file) {
@@ -97,7 +118,6 @@ module.exports.uploadWallpaper = async (req, res, next) => {
     isFree: setIsFree,
     owner: req.user._id,
     image: imageData,
-    geometry: response.body.features[0].geometry,
   });
 
   const savedWallpaper = await newWallpaper.save();
