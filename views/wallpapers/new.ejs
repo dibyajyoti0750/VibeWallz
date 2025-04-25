@@ -46,6 +46,29 @@
   .btn-dark:hover {
     background-color: #000;
   }
+
+  .spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .btn-loading {
+    pointer-events: none;
+    opacity: 0.8;
+  }
 </style>
 
 <h2 class="text-center sub-heading">
@@ -58,6 +81,7 @@
     style="max-width: 500px; width: 100%"
   >
     <form
+      id="uploadForm"
       action="/wallpapers"
       method="post"
       novalidate
@@ -179,7 +203,19 @@
         </label>
       </div>
 
-      <button class="btn btn-dark w-100">Upload</button>
+      <button id="uploadBtn" class="btn btn-dark w-100" type="submit">
+        Upload
+      </button>
     </form>
   </div>
 </div>
+
+<script>
+  const uploadForm = document.querySelector("#uploadForm");
+  const uploadBtn = document.querySelector("#uploadBtn");
+
+  uploadForm.addEventListener("submit", () => {
+    uploadBtn.classList.add("btn-loading");
+    uploadBtn.innerHTML = `<span class="spinner"></span>Uploading...`;
+  });
+</script>
