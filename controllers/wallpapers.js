@@ -5,8 +5,23 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
-  const wallpapers = await Wallpaper.find({}).sort({ createdAt: -1 }); // Sorts in descending order (newest first)
-  res.render("wallpapers/index", { wallpapers });
+  const { filter } = req.query;
+
+  let wallpapers;
+
+  if (filter) {
+    wallpapers = await Wallpaper.find({ category: filter }).sort({
+      createdAt: -1,
+    });
+  } else {
+    wallpapers = await Wallpaper.find({}).sort({ createdAt: -1 });
+  }
+
+  if (req.headers.accept && req.headers.accept.includes("application/json")) {
+    return res.json(wallpapers);
+  } else {
+    return res.render("wallpapers/index", { wallpapers });
+  }
 };
 
 module.exports.renderNewForm = (req, res) => {

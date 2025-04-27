@@ -277,32 +277,32 @@
 
 <main>
   <div id="filters" class="mt-2">
-    <div class="filter">
+    <div id="Trending" class="filter">
       <img src="src/filterIcons/fire.png" alt="Trending Icon" />
       <p>Trending</p>
     </div>
 
-    <div class="filter">
+    <div id="Nature" class="filter">
       <img src="src/filterIcons/leaf.png" alt="Nature Icon" />
       <p>Nature</p>
     </div>
 
-    <div class="filter">
+    <div id="Abstract" class="filter">
       <img src="src/filterIcons/abstract-shape.png" alt="Abstract Icon" />
       <p>Abstract</p>
     </div>
 
-    <div class="filter">
+    <div id="Cities" class="filter">
       <img src="src/filterIcons/city.png" alt="Cities Icon" />
       <p>Cities</p>
     </div>
 
-    <div class="filter">
+    <div id="Animals" class="filter">
       <img src="src/filterIcons/paw.png" alt="Animals Icon" />
       <p>Animals</p>
     </div>
 
-    <div class="filter">
+    <div id="Technology" class="filter">
       <img
         src="src/filterIcons/digital-transformation.png"
         alt="Technology Icon"
@@ -310,74 +310,79 @@
       <p>Technology</p>
     </div>
 
-    <div class="filter">
+    <div id="Travel" class="filter">
       <img src="src/filterIcons/travel.png" alt="Travel Icon" />
       <p>Travel</p>
     </div>
 
-    <div class="filter">
+    <div id="Minimalist" class="filter">
       <img src="src/filterIcons/blur.png" alt="Minimalist Icon" />
       <p>Minimalist</p>
     </div>
 
-    <div class="filter">
+    <div id="Space" class="filter">
       <img src="src/filterIcons/saturn.png" alt="Space Icon" />
       <p>Space</p>
     </div>
 
-    <div class="filter">
+    <div id="Seasonal" class="filter">
       <img src="src/filterIcons/snowman.png" alt="Seasonal Icon" />
       <p>Seasonal</p>
     </div>
 
-    <div class="filter">
+    <div id="Fantasy" class="filter">
       <img src="src/filterIcons/dragon.png" alt="Fantasy Icon" />
       <p>Fantasy</p>
     </div>
 
-    <div class="filter">
+    <div id="Anime" class="filter">
       <img src="src/filterIcons/cloud.png" alt="Anime Icon" />
       <p>Anime</p>
     </div>
 
-    <div class="filter">
+    <div id="Movies" class="filter">
       <img src="src/filterIcons/clapperboard.png" alt="Movies Icon" />
       <p>Movies</p>
     </div>
 
-    <div class="filter">
+    <div id="Quotes" class="filter">
       <img src="src/filterIcons/quotation.png" alt="Quotes Icon" />
       <p>Quotes</p>
     </div>
 
-    <div class="filter">
+    <div id="Vehicles" class="filter">
       <img src="src/filterIcons/car.png" alt="Vehicles Icon" />
       <p>Vehicles</p>
     </div>
 
-    <div class="filter">
+    <div id="Food" class="filter">
       <img src="src/filterIcons/fast-food.png" alt="Foodcon" />
       <p>Food</p>
     </div>
 
-    <div class="filter">
+    <div id="Sports" class="filter">
       <img src="src/filterIcons/football.png" alt="Sports Icon" />
       <p>Sports</p>
     </div>
 
-    <div class="filter">
+    <div id="Art" class="filter">
       <img src="src/filterIcons/painting.png" alt="Art Icon" />
       <p>Art</p>
     </div>
 
-    <div class="filter">
+    <div id="BlackAndWhite" class="filter">
       <img src="src/filterIcons/black-and-white.png" alt="B/W Icon" />
       <p>B/W</p>
     </div>
 
-    <div class="filter">
+    <div id="Music" class="filter">
       <img src="src/filterIcons/musical-note.png" alt="Music Icon" />
       <p>Music</p>
+    </div>
+
+    <div id="FantasyLandscapes" class="filter">
+      <img src="src/filterIcons/sword.png" alt="Fantasy Landscapes Icon" />
+      <p>Landscapes</p>
     </div>
   </div>
 
@@ -428,3 +433,25 @@
     </div>
   </div>
 </main>
+
+<script src="/js/home.js"></script>
+
+<script>
+  const filters = document.querySelectorAll(".filter");
+
+  filters.forEach((filter) =>
+    filter.addEventListener("click", () => applyFilter(filter))
+  );
+
+  const applyFilter = async (theFilter) => {
+    let value = theFilter.getAttribute("id");
+    console.log(value);
+
+    try {
+      let res = await axios.get(`/wallpapers?filter=${value}`);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+</script>
