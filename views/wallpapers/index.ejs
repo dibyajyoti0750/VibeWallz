@@ -112,15 +112,13 @@
     </div>
   </div>
 
+  <!-- Main Content -->
   <div class="container mt-4 mb-5">
-    <!-- From Uiverse.io by StealthWorm -->
+    <!-- AI Button -->
     <form action="/ai" method="get">
       <button type="submit" class="ai-btn mb-4">
         <strong class="heading-text">AI Image Generation</strong>
-        <div id="container-stars">
-          <div id="stars"></div>
-        </div>
-
+        <div id="container-stars"><div id="stars"></div></div>
         <div id="glow">
           <div class="circle"></div>
           <div class="circle"></div>
@@ -128,12 +126,12 @@
       </button>
     </form>
 
-    <div class="row g-3" data-masonry='{"percentPosition": true}'>
+    <!-- Masonry Grid -->
+    <div class="row g-3" id="wallpaper-grid">
       <% for(let wallpaper of wallpapers) { %>
-      <div class="col-6 col-md-2 col-sm-4">
+      <div class="col-6 col-sm-4 col-md-2">
         <div
           class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative"
-          data-orientation="portrait"
         >
           <a href="/wallpapers/<%= wallpaper._id %>" class="wallpaper-link">
             <img
@@ -144,7 +142,6 @@
               style="object-fit: cover"
             />
           </a>
-
           <a
             download
             href="<%= wallpaper.image.url.replace('/upload/', `/upload/fl_attachment:${wallpaper.title.replace(/\s+/g, '_')}`) %>"
@@ -160,4 +157,18 @@
   </div>
 </main>
 
+<!-- Scripts -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const grid = document.querySelector("#wallpaper-grid");
+    imagesLoaded(grid, function () {
+      new Masonry(grid, {
+        itemSelector: ".col-6",
+        percentPosition: true,
+      });
+    });
+  });
+</script>
 <script src="/js/home.js"></script>

@@ -100,6 +100,14 @@ const renderWallpapers = (wallpapers) => {
       wallpapersContainer.appendChild(col);
     });
 
+    // Re-run Masonry after new wallpapers are rendered
+    imagesLoaded(wallpapersContainer, function () {
+      new Masonry(wallpapersContainer, {
+        itemSelector: ".col-6",
+        percentPosition: true,
+      });
+    });
+
     // After content is changed, trigger fade-in
     wallpapersContainer.classList.remove("fade-out");
     wallpapersContainer.classList.add("fade-in");
