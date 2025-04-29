@@ -30,7 +30,8 @@ module.exports.generateImage = async (req, res) => {
     return res.redirect("/ai");
   }
 
-  const contents = `${prompt}. Please generate this image in a 9:16 vertical aspect ratio.`;
+  // const contents = `${prompt}. Please generate this image in a 9:16 vertical aspect ratio.`;
+  const contents = prompt;
 
   const response = await ai.models.generateContent({
     model: "gemini-2.0-flash-exp-image-generation",
