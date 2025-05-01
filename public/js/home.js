@@ -1,4 +1,5 @@
 const filters = document.querySelectorAll(".filter");
+const filterTitle = document.querySelector("#filter-title");
 
 let crossIcon = document.createElement("span");
 crossIcon.classList.add("crossIcon");
@@ -12,6 +13,9 @@ crossIcon.addEventListener("click", async (e) => {
   crossIcon.remove();
   activeFilter = null;
   await resetWallpapers();
+
+  filterTitle.classList.add("d-none");
+  filterTitle.innerText = "";
 });
 
 filters.forEach((filter) =>
@@ -27,8 +31,12 @@ filters.forEach((filter) =>
     } else {
       activeFilter = selectedFilter;
       await applyFilter(filter);
+
       filter.classList.add("active");
       filter.insertAdjacentElement("afterBegin", crossIcon);
+
+      filterTitle.classList.remove("d-none");
+      filterTitle.innerText = `${activeFilter} wallpapers`;
     }
   })
 );
