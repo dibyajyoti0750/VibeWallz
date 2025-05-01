@@ -1,30 +1,34 @@
 const filters = document.querySelectorAll(".filter");
+
+let crossIcon = document.createElement("span");
+crossIcon.classList.add("crossIcon");
+crossIcon.innerText = "X";
+
 let activeFilter = null;
+
+crossIcon.addEventListener("click", async (e) => {
+  e.stopPropagation();
+  filters.forEach((f) => f.classList.remove("active"));
+  crossIcon.remove();
+  activeFilter = null;
+  await resetWallpapers();
+});
 
 filters.forEach((filter) =>
   filter.addEventListener("click", async () => {
     const selectedFilter = filter.getAttribute("id");
 
+    filters.forEach((f) => f.classList.remove("active"));
+    crossIcon.remove();
+
     if (activeFilter === selectedFilter) {
-      // Unselect filter and reset
       activeFilter = null;
-      await resetWallpapers(); // Reload original wallpapers without refreshing the page
-      filters.forEach((f) => {
-        f.style.backgroundColor = "";
-        f.style.opacity = "0.7";
-      });
+      await resetWallpapers();
     } else {
-      // Apply new filter
       activeFilter = selectedFilter;
       await applyFilter(filter);
-
-      filters.forEach((f) => {
-        f.style.backgroundColor = "";
-        f.style.opacity = "0.7";
-      });
-
-      filter.style.backgroundColor = "#f0f0f0";
-      filter.style.opacity = "1";
+      filter.classList.add("active");
+      filter.insertAdjacentElement("afterBegin", crossIcon);
     }
   })
 );
@@ -73,29 +77,29 @@ const renderWallpapers = (wallpapers) => {
       col.className = "col-6 col-md-2 col-sm-4";
 
       col.innerHTML = `
-      <div class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative" data-orientation="portrait">
-        <a href="/wallpapers/${wallpaper._id}" class="wallpaper-link">
-          <img
-            loading="lazy"
-            src="${wallpaper.image.url}"
-            class="card-img-top img-fluid"
-            alt="${wallpaper.title}"
-            style="object-fit: cover"
-          />
-        </a>
-        <a
-          download
-          href="${wallpaper.image.url.replace(
-            "/upload/",
-            `/upload/fl_attachment:${wallpaper.title.replace(/\s+/g, "_")}`
-          )}"
-          title="Download wallpaper"
-          class="download-btn btn"
-        >
-          <i class="fas fa-download"></i>
-        </a>
-      </div>
-    `;
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative" data-orientation="portrait">
+      <a href="/wallpapers/${wallpaper._id}" class="wallpaper-link">
+        <img
+          loading="lazy"
+          src="${wallpaper.image.url}"
+          class="card-img-top img-fluid"
+          alt="${wallpaper.title}"
+          style="object-fit: cover"
+        />
+      </a>
+      <a
+        download
+        href="${wallpaper.image.url.replace(
+          "/upload/",
+          `/upload/fl_attachment:${wallpaper.title.replace(/\s+/g, "_")}`
+        )}"
+        title="Download wallpaper"
+        class="download-btn btn"
+      >
+        <i class="fas fa-download"></i>
+      </a>
+    </div>
+  `;
 
       wallpapersContainer.appendChild(col);
     });
