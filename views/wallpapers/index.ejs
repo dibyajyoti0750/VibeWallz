@@ -114,10 +114,22 @@
 
   <!-- Main Content -->
   <div class="container mb-5">
+    <!-- AI Button -->
+    <form class="mt-4 mb-4" action="/ai" method="get">
+      <button type="submit" class="ai-btn">
+        <strong class="heading-text">AI Image Generation</strong>
+        <div id="container-stars"><div id="stars"></div></div>
+        <div id="glow">
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+      </button>
+    </form>
+
     <h2 id="filter-title" class="d-none"></h2>
 
     <div class="row">
-      <div class="col-6 p-1 mt-2 mb-4">
+      <div class="col-6 col-lg-2 p-1 mt-2 mb-3">
         <div class="dropdown w-100">
           <button
             class="btn btn-light border dropdown-toggle w-100 text-start"
@@ -134,7 +146,7 @@
         </div>
       </div>
 
-      <div class="col-6 p-1 mt-2 mb-4">
+      <div class="col-6 col-lg-2 p-1 mt-2 mb-3">
         <div class="dropdown w-100">
           <button
             class="btn btn-light border dropdown-toggle w-100 text-start"
@@ -150,18 +162,6 @@
         </div>
       </div>
     </div>
-
-    <!-- AI Button -->
-    <form action="/ai" method="get">
-      <button type="submit" class="ai-btn mb-4">
-        <strong class="heading-text">AI Image Generation</strong>
-        <div id="container-stars"><div id="stars"></div></div>
-        <div id="glow">
-          <div class="circle"></div>
-          <div class="circle"></div>
-        </div>
-      </button>
-    </form>
 
     <!-- Masonry Grid -->
     <div class="row g-3" id="wallpaper-grid">
