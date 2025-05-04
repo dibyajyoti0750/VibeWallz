@@ -112,20 +112,42 @@
     </div>
   </div>
 
+  <!-- Tool Bar -->
+  <div id="toolbar" class="mb-5 mt-5">
+    <div class="tool">
+      <img src="src/tools/brush.png" />
+      <span>Canvas</span>
+    </div>
+    <div class="tool">
+      <img src="src/tools/infinity.png" />
+      <span>Flow State</span>
+    </div>
+    <div class="tool video">
+      <img src="src/tools/film.png" />
+      <span>Video</span>
+    </div>
+
+    <a class="tool ai-btn-container" href="/ai">
+      <img src="src/tools/magic-wand.png" />
+      <span class="btn ai-btn">Generate</span>
+    </a>
+
+    <div class="tool">
+      <img src="src/tools/adjust.png" />
+      <span>Upscaler</span>
+    </div>
+    <div class="tool">
+      <img src="src/tools/photo-editing.png" />
+      <span>Editor</span>
+    </div>
+    <div class="border-0 tool more">
+      <img src="src/tools/application.png" />
+      <span>More</span>
+    </div>
+  </div>
+
   <!-- Main Content -->
   <div class="container mb-5">
-    <!-- AI Button -->
-    <form class="mt-4 mb-4" action="/ai" method="get">
-      <button type="submit" class="ai-btn">
-        <strong class="heading-text">AI Image Generation</strong>
-        <div id="container-stars"><div id="stars"></div></div>
-        <div id="glow">
-          <div class="circle"></div>
-          <div class="circle"></div>
-        </div>
-      </button>
-    </form>
-
     <h2 id="filter-title" class="d-none"></h2>
 
     <div class="row">
@@ -185,7 +207,7 @@
             title="Download wallpaper"
             class="download-btn btn"
           >
-            <i class="fas fa-download"></i>
+            <img src="src/tools/brush.png" />
           </a>
         </div>
       </div>
