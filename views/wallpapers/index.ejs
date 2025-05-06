@@ -112,39 +112,8 @@
     </div>
   </div>
 
-  <!-- Tool Bar -->
-  <div id="toolbar" class="mb-5 mt-5">
-    <div class="tool">
-      <img src="src/tools/brush.png" />
-      <span>Canvas</span>
-    </div>
-    <div class="tool">
-      <img src="src/tools/infinity.png" />
-      <span>Flow State</span>
-    </div>
-    <div class="tool video">
-      <img src="src/tools/film.png" />
-      <span>Video</span>
-    </div>
-
-    <a class="tool ai-btn-container" href="/ai">
-      <img src="src/tools/magic-wand.png" />
-      <span class="ai-btn">Generate</span>
-    </a>
-
-    <div class="tool">
-      <img src="src/tools/adjust.png" />
-      <span>Upscaler</span>
-    </div>
-    <div class="tool">
-      <img src="src/tools/photo-editing.png" />
-      <span>Editor</span>
-    </div>
-    <div class="border-0 tool more">
-      <img src="src/tools/application.png" />
-      <span>More</span>
-    </div>
-  </div>
+  <!-- AI Button -->
+  <a href="/ai">Generate</a>
 
   <!-- Main Content -->
   <div class="container mb-5">
@@ -185,12 +154,13 @@
       </div>
     </div>
 
-    <!-- Masonry Grid -->
-    <div class="row g-3" id="wallpaper-grid">
+    <!-- Wallpapers -->
+    <div class="row g-3" data-masonry='{"percentPosition": true}'>
       <% for(let wallpaper of wallpapers) { %>
-      <div class="col-6 col-sm-4 col-md-2">
+      <div class="col-6 col-md-2 col-sm-4">
         <div
           class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative"
+          data-orientation="portrait"
         >
           <a href="/wallpapers/<%= wallpaper._id %>" class="wallpaper-link">
             <img
@@ -207,7 +177,7 @@
             title="Download wallpaper"
             class="download-btn btn"
           >
-            <img src="src/tools/brush.png" />
+            <i class="fas fa-download"></i>
           </a>
         </div>
       </div>
@@ -217,17 +187,4 @@
 </main>
 
 <!-- Scripts -->
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const grid = document.querySelector("#wallpaper-grid");
-    imagesLoaded(grid, function () {
-      new Masonry(grid, {
-        itemSelector: ".col-6",
-        percentPosition: true,
-      });
-    });
-  });
-</script>
 <script src="/js/home.js"></script>
