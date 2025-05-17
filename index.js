@@ -119,7 +119,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.redirect("/wallpapers");
+  res.render("wallpapers/landingPage");
 });
 
 app.use("/wallpapers", wallpaperRouter);
