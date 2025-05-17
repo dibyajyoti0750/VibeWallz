@@ -6,6 +6,7 @@ crossIcon.classList.add("crossIcon");
 crossIcon.innerText = "X";
 
 let activeFilter = null;
+let filteredWallpapersCount = null;
 
 crossIcon.addEventListener("click", async (e) => {
   e.stopPropagation();
@@ -36,7 +37,7 @@ filters.forEach((filter) =>
       filter.insertAdjacentElement("afterBegin", crossIcon);
 
       filterTitle.classList.remove("d-none");
-      filterTitle.innerText = `${activeFilter} wallpapers`;
+      filterTitle.innerText = `${filteredWallpapersCount} ${activeFilter} wallpapers`;
     }
   })
 );
@@ -48,6 +49,8 @@ const applyFilter = async (theFilter) => {
   try {
     let res = await axios.get(`/wallpapers?filter=${value}`);
     let filteredWallpapers = res.data;
+
+    filteredWallpapersCount = filteredWallpapers.length;
 
     renderWallpapers(filteredWallpapers);
   } catch (error) {
