@@ -11,8 +11,78 @@
       integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Niconne&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/landingPage.css" />
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg custom-navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">VibeWallz</a>
+
+        <!-- Custom Toggler Button -->
+        <button
+          class="navbar-toggler custom-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+        >
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNavDropdown"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Pricing</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero-section">
+      <img id="background-img" src="/src/background.png" alt="" />
+      <div class="overlay-content">
+        <h1>
+          The best free AI-generated wallpapers, shared and created by users
+          like you.
+        </h1>
+        <div class="container">
+          <div class="search-wrapper mx-auto">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search ai wallpapers"
+            />
+            <a href="">
+              <i class="fas fa-search search-icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container d-flex justify-content-center mt-5 mb-5">
       <a href="/wallpapers" class="btn btn-primary btn-lg">Explore</a>
     </div>
