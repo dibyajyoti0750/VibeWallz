@@ -68,6 +68,7 @@
           The best free AI-generated wallpapers, shared and created by users
           like you.
         </h1>
+
         <div class="container">
           <div class="search-wrapper mx-auto">
             <input
@@ -80,11 +81,19 @@
             </a>
           </div>
         </div>
+
+        <a href="/wallpapers" class="btn btn-light">Open the App</a>
       </div>
     </div>
 
-    <div class="container d-flex justify-content-center mt-5 mb-5">
-      <a href="/wallpapers" class="btn btn-primary btn-lg">Explore</a>
+    <h2 class="mx-4 mb-2">Free AI Wallpapers</h2>
+
+    <div class="masonry" style="max-width: 100%; width: 100vw">
+      <% wallpapers.forEach((wallpaper) => { %>
+      <div class="masonry-item">
+        <img src="<%= wallpaper.image.url %>" alt="Wallpaper" />
+      </div>
+      <% }); %>
     </div>
 
     <script
@@ -92,5 +101,7 @@
       integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
       crossorigin="anonymous"
     ></script>
+
+    <script src="/js/landingPage.js"></script>
   </body>
 </html>
