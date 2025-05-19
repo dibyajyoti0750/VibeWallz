@@ -121,7 +121,9 @@ app.use((req, res, next) => {
 });
 
 app.get("/", async (req, res) => {
-  const wallpapers = await Wallpaper.find({}).sort({ createdAt: -1 }).limit(10);
+  const wallpapers = await Wallpaper.find({})
+    .sort({ createdAt: 1 }) // Sorts by oldest first
+    .limit(10);
   res.render("wallpapers/landingPage", { wallpapers });
 });
 
