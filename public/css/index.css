@@ -181,50 +181,87 @@
   transition: opacity 0.2s ease;
 }
 
-/* AI Button */
-#ai-btn {
-  --clr-font-main: hsla(0 0% 20% / 100);
-  --btn-bg-1: hsla(194 100% 69% / 1);
-  --btn-bg-2: hsla(217 100% 56% / 1);
-  --btn-bg-color: hsla(360 100% 100% / 1);
-  --radii: 0.5em;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 1.2em 1.6em; /* thicker button */
-  width: 60%;
-  margin: 0 auto;
-  display: block;
+.hero {
+  position: relative;
+  width: 100%;
+  height: 56vh;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(45%); /* Dim the image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
   text-align: center;
-  font-size: var(--size, 1.1rem);
+}
+
+.hero-heading {
   font-weight: 600;
-  transition: 0.8s;
-  background-size: 280% auto;
-  background-image: linear-gradient(
-    325deg,
-    var(--btn-bg-2) 0%,
-    var(--btn-bg-1) 55%,
-    var(--btn-bg-2) 90%
-  );
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Horizontal, vertical, blur, color */
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 0.4rem 1rem;
+  width: 100%;
+  max-width: 43rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.search-input {
   border: none;
-  border-radius: var(--radii);
-  color: var(--btn-bg-color);
-  box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5),
-    0px 5px 5px -1px rgba(58, 125, 233, 0.25),
-    inset 4px 4px 8px rgba(175, 230, 255, 0.5),
-    inset -4px -4px 8px rgba(19, 95, 216, 0.35);
-}
-
-#ai-btn:hover {
-  background-position: right top;
-}
-
-#ai-btn:is(:focus, :focus-visible, :active) {
   outline: none;
-  box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  min-width: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  #ai-btn {
-    transition: linear;
+.search-form i {
+  font-size: 1.2rem;
+  color: #999;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .search-input {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.8rem;
   }
+}
+
+#ai-btn {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  background-color: #ffffffee;
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }

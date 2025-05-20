@@ -2,6 +2,31 @@
 <link rel="stylesheet" href="/css/index.css" />
 
 <main>
+  <div class="hero">
+    <img src="src/pexels-apasaric-2339009.jpg" alt="Background" />
+    <div class="overlay-content">
+      <h2 class="text-light hero-heading">
+        The best free AI-generated wallpapers, <br />
+        shared and created by users like you.
+      </h2>
+
+      <!-- Search Bar -->
+      <form role="search" class="search-form">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search AI images"
+        />
+        <a href="">
+          <i class="fas fa-search"></i>
+        </a>
+      </form>
+
+      <!-- AI Button -->
+      <a id="ai-btn" href="/ai">AI Image Generation</a>
+    </div>
+  </div>
+
   <div id="filters" class="container mt-3">
     <div id="AI" class="filter">
       <img src="src/filterIcons/image.png" alt="AI Icon" />
@@ -110,11 +135,6 @@
       <img src="src/filterIcons/landscape.png" alt="Fantasy Landscapes Icon" />
       <p>Landscapes</p>
     </div>
-  </div>
-
-  <!-- AI Button -->
-  <div class="container text-center mt-4 mb-4">
-    <a id="ai-btn" href="/ai">AI Image Generation</a>
   </div>
 
   <!-- Main Content -->
