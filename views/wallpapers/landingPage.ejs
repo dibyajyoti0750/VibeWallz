@@ -51,18 +51,44 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">Home</a>
+              <a class="nav-link text-white" href="/ai">AI</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/wallpapers">Explore</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">Pricing</a>
             </li>
           </ul>
+
+          <div class="navbar-nav ms-lg-3">
+            <% if(!currUser) { %>
+            <a class="nav-link" href="/signup">Sign up</a>
+            <a class="nav-link" href="/login">Login</a>
+            <% } %> <% if(currUser) { %>
+            <a class="nav-link" href="/logout">Log out</a>
+            <% } %>
+          </div>
+
+          <div class="ms-lg-3">
+            <form action="/wallpapers/new" method="get">
+              <% if(currUser) { %>
+              <button class="btn btn-light w-100 upload-btn" type="submit">
+                <strong>Upload</strong>
+              </button>
+              <% } %>
+            </form>
+          </div>
         </div>
       </div>
     </nav>
 
     <div class="hero-section">
-      <img id="background-img" src="/src/background.png" alt="" />
+      <img
+        id="background-img"
+        src="src/pexels-apasaric-2339009.jpg"
+        alt="hero-image"
+      />
       <div class="overlay-content">
         <h1>
           The best free AI-generated wallpapers, shared and created by users
@@ -82,11 +108,11 @@
           </div>
         </div>
 
-        <a href="/wallpapers" class="btn btn-light">Open the App</a>
+        <a href="/wallpapers" class="explore-btn">Open the App</a>
       </div>
     </div>
 
-    <h2 class="mx-4 mb-2">Free AI Wallpapers</h2>
+    <h2 class="mx-4 mb-2">Featured AI Wallpapers</h2>
 
     <div class="masonry" style="max-width: 100%; width: 100vw">
       <% wallpapers.forEach((wallpaper) => { %>
