@@ -24,8 +24,6 @@ const LocalStrategy = require("passport-local");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("./models/user");
 
-const Wallpaper = require("./models/wallpaper");
-
 const dbURI = process.env.MONGO_URI;
 
 main()
@@ -120,9 +118,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", async (req, res) => {
-  const wallpapers = await Wallpaper.find({}).sort({ createdAt: -1 }).limit(10);
-  res.render("wallpapers/landingPage", { wallpapers });
+app.get("/", (req, res) => {
+  res.redirect("/wallpapers");
 });
 
 app.use("/wallpapers", wallpaperRouter);
