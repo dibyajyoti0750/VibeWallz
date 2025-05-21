@@ -241,9 +241,20 @@
 }
 
 .search-form i {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #a8a8a8;
   margin-left: 0.5rem;
+}
+
+.search-input-left {
+  margin-left: -0.6rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  background-color: #ededed;
+}
+
+.search-input-left i {
+  margin-left: -0.6rem !important;
 }
 
 @media (max-width: 480px) {
