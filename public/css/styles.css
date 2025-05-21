@@ -16,6 +16,10 @@ body::-webkit-scrollbar {
   font-size: 2rem;
 }
 
+.nav-link {
+  margin-right: 0.85rem;
+}
+
 .nav-link.active {
   font-weight: 600;
   color: #000 !important;
@@ -23,7 +27,18 @@ body::-webkit-scrollbar {
 }
 
 .upload-btn {
-  padding: 0.75rem 1.5rem;
+  background-color: #000;
+  color: #fff;
+  padding: 0.7rem 1.5rem !important;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #2d3436;
+  color: #fff;
 }
 
 /* Style the toggler button to remove borders and set dimensions */

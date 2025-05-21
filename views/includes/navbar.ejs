@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
   <div class="container-fluid">
     <a class="navbar-brand ms-2" href="/">VibeWallz</a>
     <button
@@ -47,10 +47,10 @@
       </div>
 
       <!-- Upload Button -->
-      <div class="ms-lg-3">
+      <div class="ms-lg-3 me-2">
         <form action="/wallpapers/new" method="get">
           <% if(currUser) { %>
-          <button class="btn btn-dark w-100 upload-btn" type="submit">
+          <button class="btn w-100 upload-btn" type="submit">
             <strong>Upload</strong>
           </button>
           <% } %>
