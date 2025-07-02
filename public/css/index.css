@@ -274,17 +274,29 @@
   font-weight: 600;
   padding: 1em 2em;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  box-shadow: 0 0 0 0 black;
+  position: relative;
+  border: 3px solid transparent;
+  background-clip: padding-box;
 }
 
-#ai-btn:hover {
-  transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 black;
-}
-
-#ai-btn:active {
-  transform: translateY(2px) translateX(1px);
-  box-shadow: 0 0 0 0 black;
+#ai-btn::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(
+    45deg,
+    #3b82f6,
+    /* Blue */ #8b5cf6,
+    /* Purple */ #ec4899,
+    /* Pink */ #ef4444,
+    /* Red */ #f97316,
+    /* Orange */ #eab308,
+    /* Yellow */ #22c55e,
+    /* Green */ #06b6d4 /* Cyan */
+  );
+  border-radius: 10em;
+  z-index: -1;
 }
