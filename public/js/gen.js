@@ -60,10 +60,48 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = error.response.data;
 
         errorMessage.innerHTML = `
-    ${error.response.data.message}
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  `;
+  <div>${data.message}</div>
+  <button id="buy-plan" class="btn">Buy Plan</button>
+  <button type="button" class="btn-close" onclick="errorMessage.classList.add('d-none')">&times;</button>
+`;
         errorMessage.classList.remove("d-none");
+
+        setTimeout(() => {
+          const buyBtn = document.querySelector("#buy-plan");
+          if (buyBtn) {
+            buyBtn.addEventListener("click", async () => {
+              try {
+                const res = await axios.post("/payment/order");
+                const { orderId, amount, currency, key } = res.data;
+
+                const options = {
+                  key,
+                  amount,
+                  currency,
+                  name: "VibeWallz",
+                  description: "Buy more image generations",
+                  order_id: orderId,
+                  handler: async function (response) {
+                    alert("Payment successful!");
+                    window.location.reload();
+                  },
+                  prefill: {
+                    email: "user@example.com", // Optionally use req.user.email
+                  },
+
+                  theme: {
+                    color: "#3399cc",
+                  },
+                };
+
+                const razor = new Razorpay(options);
+                razor.open();
+              } catch (error) {
+                alert("Error creating Razorpay order");
+              }
+            });
+          }
+        }, 100);
       }
     }
   });

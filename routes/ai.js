@@ -9,7 +9,7 @@ router.get("/", isLoggedIn, aiController.renderAiForm);
 router.post(
   "/generate",
   isLoggedIn,
-  aiController.aiLimiter,
+  aiController.checkImageLimit,
   wrapAsync(aiController.generateImage)
 );
 

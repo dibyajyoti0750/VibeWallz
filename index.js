@@ -15,6 +15,7 @@ const wallpaperRouter = require("./routes/wallpaper");
 const commentRouter = require("./routes/comment");
 const aiRouter = require("./routes/ai");
 const userRouter = require("./routes/user");
+const paymentRouter = require("./routes/payment");
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -126,6 +127,7 @@ app.use("/wallpapers", wallpaperRouter);
 app.use("/wallpapers/:id/comments", commentRouter);
 app.use("/ai", aiRouter);
 app.use("/", userRouter);
+app.use("/payment", paymentRouter);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found!"));

@@ -1,15 +1,9 @@
 const { GoogleGenAI } = require("@google/genai");
 const cloudinary = require("cloudinary").v2;
 const Wallpaper = require("../models/wallpaper");
-const rateLimit = require("express-rate-limit");
-const Razorpay = require("razorpay");
+const User = require("../models/user");
 
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_KEY });
-
-const razorpayInstance = new Razorpay({
-  key_id: process.env.RZP_KEY_ID,
-  key_secret: process.env.RZP_KEY_SECRET,
-});
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -22,23 +16,49 @@ module.exports.renderAiForm = (req, res) => {
     message: "I am still working on this feature. It will be live soon.",
   }); */
 
-  res.render("ai/gen", { hideFooter: true });
+  res.render("ai/gen", { hideFooter: true, user: req.user });
 };
 
-module.exports.aiLimiter = rateLimit({
-  windowMs: 24 * 60 * 60 * 1000, // 24 hours
-  max: 5, // 5 image generation allowed per day per IP
-  standardHeaders: true,
-  legacyHeaders: false,
-  handler: (req, res, next, options) => {
-    res.status(429).json({
-      success: false,
-      paymentRequired: true,
-      message:
-        "Daily limit reached. To generate more images, buy our subscription.",
-    });
-  },
-});
+module.exports.checkImageLimit = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    const now = new Date();
+    const lastReset = new Date(user.lastReset);
+
+    const isSameDay =
+      now.getFullYear() === lastReset.getFullYear() &&
+      now.getMonth() === lastReset.getMonth() &&
+      now.getDate() === lastReset.getDate();
+
+    if (!isSameDay) {
+      user.imageGenerationCount = 0;
+      user.lastReset = now;
+    }
+
+    if (user.isSubscribed) {
+      await user.save();
+      return next();
+    }
+
+    if (user.imageGenerationCount >= 5) {
+      return res.status(429).json({
+        success: false,
+        paymentRequired: true,
+        message:
+          "Daily image generation limit reached. Please subscribe to continue.",
+      });
+    }
+
+    user.imageGenerationCount += 1;
+    await user.save();
+
+    next();
+  } catch (error) {
+    console.error("Error in image limit middleware:", error);
+    res.status(500).json({ success: false, message: "Server error." });
+  }
+};
 
 module.exports.generateImage = async (req, res) => {
   /* return res.status(403).json({
