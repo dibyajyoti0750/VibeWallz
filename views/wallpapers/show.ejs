@@ -30,8 +30,8 @@
         </button>
       </div>
 
-      <% if (wallpaper.isFree) { %>
-
+      <% if (wallpaper.isFree) { %> <% if (wallpaper.image &&
+      wallpaper.image.url) { %>
       <a
         download
         href="<%= wallpaper.image.url.replace('/upload/', `/upload/fl_attachment:${wallpaper.title.replace(/\s+/g, '_')}`) %>"
@@ -40,9 +40,11 @@
       >
         Download
       </a>
-
       <% } else { %>
-
+      <a title="Image missing" class="btn btn-secondary disabled" tabindex="-1">
+        <i class="fas fa-exclamation-circle"></i> No Image
+      </a>
+      <% } %> <% } else { %>
       <a
         title="Download restricted"
         class="btn btn-secondary disabled"
@@ -50,7 +52,6 @@
       >
         <i class="fas fa-lock"></i> Download
       </a>
-
       <% } %>
     </div>
 
@@ -102,7 +103,7 @@
       <% } else { %>
       <li>
         <i class="fa-solid fa-lock"></i>
-        <span>Licensed under the VibeWallz+ License</span>
+        <span>Licensed under VibeWallz+ License</span>
       </li>
       <% } %> <% if (wallpaper.location) { %>
       <li>

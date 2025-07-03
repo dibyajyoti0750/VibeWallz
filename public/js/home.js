@@ -29,6 +29,9 @@ filters.forEach((filter) =>
     if (activeFilter === selectedFilter) {
       activeFilter = null;
       await resetWallpapers();
+
+      filterTitle.classList.add("d-none");
+      filterTitle.innerText = "";
     } else {
       activeFilter = selectedFilter;
       await applyFilter(filter);

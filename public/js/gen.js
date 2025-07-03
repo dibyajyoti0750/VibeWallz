@@ -105,4 +105,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
+  // I don't know how, but somehow it works
+  downloadButton.addEventListener("click", async () => {
+    const imageURL = generatedImage.src;
+
+    try {
+      const response = await fetch(imageURL);
+      const blob = await response.blob();
+      const blobURL = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = blobURL;
+      link.download = `vibeWallz-${Date.now()}.png`;
+      document.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(blobURL);
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("Failed to download image. Please try again.");
+    }
+  });
 });
