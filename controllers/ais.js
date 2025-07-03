@@ -1,8 +1,15 @@
 const { GoogleGenAI } = require("@google/genai");
 const cloudinary = require("cloudinary").v2;
 const Wallpaper = require("../models/wallpaper");
+const rateLimit = require("express-rate-limit");
+const Razorpay = require("razorpay");
 
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_KEY });
+
+const razorpayInstance = new Razorpay({
+  key_id: process.env.RZP_KEY_ID,
+  key_secret: process.env.RZP_KEY_SECRET,
+});
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -17,6 +24,21 @@ module.exports.renderAiForm = (req, res) => {
 
   res.render("ai/gen", { hideFooter: true });
 };
+
+module.exports.aiLimiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours
+  max: 5, // 5 image generation allowed per day per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res, next, options) => {
+    res.status(429).json({
+      success: false,
+      paymentRequired: true,
+      message:
+        "Daily limit reached. To generate more images, buy our subscription.",
+    });
+  },
+});
 
 module.exports.generateImage = async (req, res) => {
   /* return res.status(403).json({
@@ -43,10 +65,12 @@ module.exports.generateImage = async (req, res) => {
 
   let imgURL = null;
   let imgName = null;
+  let imgDesc = null;
 
   for (const part of response.candidates[0].content.parts) {
     if (part.text) {
       console.log(part.text);
+      imgDesc = part.text;
     } else if (part.inlineData) {
       const imageData = part.inlineData.data;
 
@@ -62,7 +86,7 @@ module.exports.generateImage = async (req, res) => {
 
   const aiWallpaper = new Wallpaper({
     title: prompt,
-    description: "AI Generated Image",
+    description: imgDesc,
     image: {
       url: imgURL,
       filename: imgName,

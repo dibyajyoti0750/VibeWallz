@@ -6,6 +6,11 @@ const aiController = require("../controllers/ais");
 
 router.get("/", isLoggedIn, aiController.renderAiForm);
 
-router.post("/generate", isLoggedIn, wrapAsync(aiController.generateImage));
+router.post(
+  "/generate",
+  isLoggedIn,
+  aiController.aiLimiter,
+  wrapAsync(aiController.generateImage)
+);
 
 module.exports = router;

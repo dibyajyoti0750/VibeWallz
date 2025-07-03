@@ -53,6 +53,18 @@ document.addEventListener("DOMContentLoaded", () => {
       loadingSpinner.style.display = "none";
       imageSkeleton.style.display = "none";
       generateButton.disabled = false;
+
+      // ✅ If server responded with rate limit error
+      const errorMessage = document.querySelector("#errorMessage");
+      if (error.response && error.response.status === 429) {
+        const data = error.response.data;
+
+        errorMessage.innerHTML = `
+    ${error.response.data.message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  `;
+        errorMessage.classList.remove("d-none");
+      }
     }
   });
 });
