@@ -7,6 +7,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageSkeleton = document.getElementById("imageSkeleton");
   const downloadButton = document.querySelector("#downloadButton");
 
+  const updateGenLeft = async () => {
+    try {
+      const res = await axios.get("/ai/generation-count");
+      if (res.data.success) {
+        const usedCount = res.data.data;
+        const remaining = 5 - usedCount;
+        document.querySelector(
+          "#genLeft"
+        ).innerText = `Generations left: ${remaining}`;
+      }
+    } catch (error) {
+      console.error("Error loading generation count:", error);
+    }
+  };
+
+  updateGenLeft();
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -46,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
         imageSkeleton.style.display = "none";
         generateButton.disabled = false;
       };
+
+      updateGenLeft();
     } catch (error) {
       console.error("Error generating image:", error);
       loadingSpinner.style.display = "none";
@@ -117,8 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const link = document.createElement("a");
       link.href = blobURL;
-      link.download = `vibeWallz-${Date.now()}.png`;
-      document.appendChild(link);
+      link.download = `vibeWallz-ai-image${Date.now()}.png`;
+
+      document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(blobURL);

@@ -13,4 +13,10 @@ router.post(
   wrapAsync(aiController.generateImage)
 );
 
+router.get(
+  "/generation-count",
+  isLoggedIn,
+  aiController.sendImageGenerationCount
+);
+
 module.exports = router;

@@ -145,11 +145,26 @@ textarea.form-control:focus {
 #genLeft {
   margin: 1rem 1.5rem 3rem 0;
   font-size: 0.9rem;
-  color: #f1f1f1;
-  background-color: #1f1f1f;
-  padding: 0.4rem 1rem;
+  color: #fffaf3;
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb, #fcd5ce, #a1c4fd);
+  padding: 0.4rem 1.2rem;
   border-radius: 999px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-  letter-spacing: 0.5px;
-  font-weight: 500;
+  box-shadow: 0 0 12px rgba(162, 108, 255, 0.4),
+    0 0 6px rgba(252, 221, 118, 0.3);
+  letter-spacing: 0.6px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(4px);
+}
+
+.ai-heading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #a18cd1, #fbc2eb, #fcd5ce, #a1c4fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.8px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
 }

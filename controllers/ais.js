@@ -122,3 +122,12 @@ module.exports.generateImage = async (req, res) => {
 
   res.json(imgURL);
 };
+
+module.exports.sendImageGenerationCount = async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const count = user.imageGenerationCount;
+  res.json({
+    success: true,
+    data: count,
+  });
+};

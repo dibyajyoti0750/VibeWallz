@@ -1,19 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 <link rel="stylesheet" href="/css/gen.css" />
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const imageGenerationCount = parseInt("<%= user.imageGenerationCount %>");
-
-    const genLeft = 5 - imageGenerationCount;
-    const genLeftElement = document.getElementById("genLeft");
-
-    if (genLeftElement) {
-      genLeftElement.innerHTML = `Generations left: ${genLeft}`;
-    }
-  });
-</script>
-
 <div class="container" style="width: 60%; margin: auto">
   <div id="errorMessage" class="custom-error-box d-none"></div>
 </div>
@@ -24,7 +11,7 @@
 
 <div class="container d-flex justify-content-center mt-4 mb-5">
   <div>
-    <h2 class="text-center mb-4 text-dark">Create Stunning AI Wallpapers</h2>
+    <h1 class="ai-heading">Create Stunning AI Wallpapers</h1>
 
     <form id="imageForm" class="needs-validation" novalidate>
       <div class="mb-3">

@@ -11,9 +11,8 @@ body::-webkit-scrollbar {
 }
 
 /* Navbar */
-.navbar-brand {
-  font-family: "Niconne", cursive;
-  font-size: 2rem;
+.navbar-brand img {
+  height: 2.5rem;
 }
 
 .nav-link {
