@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (res.data.success) {
         const usedCount = res.data.data;
         const remaining = 5 - usedCount;
-        document.querySelector(
-          "#genLeft"
-        ).innerText = `Generations left: ${remaining}`;
+        const genLeftElement = document.querySelector("#genLeft");
+        if (genLeftElement) {
+          genLeftElement.innerText = `Generations left: ${remaining}`;
+        }
       }
     } catch (error) {
       console.error("Error loading generation count:", error);
