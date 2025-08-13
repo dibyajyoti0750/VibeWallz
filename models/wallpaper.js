@@ -12,7 +12,6 @@ const wallpaperSchema = new Schema(
     },
     category: { type: String },
     tags: [{ type: String }],
-    views: { type: Number, default: 0 },
     downloads: { type: Number, default: 0 },
     likes: [
       {
