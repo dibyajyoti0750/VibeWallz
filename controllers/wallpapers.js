@@ -30,6 +30,7 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.showWallpaper = async (req, res) => {
   const { id } = req.params;
+  const userId = req.user._id;
   const wallpaper = await Wallpaper.findById(id)
     .populate({
       path: "comments",
@@ -42,6 +43,12 @@ module.exports.showWallpaper = async (req, res) => {
   if (!wallpaper) {
     req.flash("error", "The wallpaper you're looking for doesn't exist!");
     return res.redirect("/wallpapers");
+  }
+
+  if (userId && !wallpaper.viewdBy.includes(userId)) {
+    wallpaper.views++;
+    wallpaper.viewdBy.push(userId);
+    await wallpaper.save();
   }
 
   res.render("wallpapers/show", { wallpaper, mapToken: process.env.MAP_TOKEN });

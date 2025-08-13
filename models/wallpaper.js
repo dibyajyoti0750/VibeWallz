@@ -13,6 +13,8 @@ const wallpaperSchema = new Schema(
     category: { type: String },
     tags: [{ type: String }],
     downloads: { type: Number, default: 0 },
+    views: { type: Number, default: 0 },
+    viewdBy: [{ type: Schema.Types.ObjectId, ref: "User" }],
     likes: [
       {
         type: Schema.Types.ObjectId,
