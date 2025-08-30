@@ -101,9 +101,7 @@ npm install -g nodemon
 
 ## 📸 Screenshots
 
-<!-- TODO -->
-
-_Add UI screenshots (homepage, showpage, wallpaper generation page, etc.)_
+_Todo: Add UI screenshots (homepage, showpage, wallpaper generation page, etc.)_
 
 ---
 
