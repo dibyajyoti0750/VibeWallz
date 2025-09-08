@@ -12,10 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await axios.get("/ai/generation-count");
       if (res.data.success) {
         const usedCount = res.data.data;
-        const remaining = 5 - usedCount;
         const genLeftElement = document.querySelector("#genLeft");
         if (genLeftElement) {
-          genLeftElement.innerText = `Generations left: ${remaining}`;
+          genLeftElement.innerText = `Generations left: ${5 - usedCount}`;
         }
       }
     } catch (error) {
