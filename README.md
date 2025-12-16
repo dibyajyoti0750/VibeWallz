@@ -111,9 +111,3 @@ _Todo: Add UI screenshots (homepage, showpage, wallpaper generation page, etc.)_
 - Create a new branch
 - Make your changes
 - Submit a pull request
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
