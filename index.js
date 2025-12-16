@@ -84,7 +84,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "https://vibewallz-ai.onrender.com/auth/google/callback",
-      // "http://localhost:8080/auth/google/callback",
+      // callbackURL: "http://localhost:8080/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {

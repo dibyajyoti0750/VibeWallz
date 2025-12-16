@@ -12,10 +12,6 @@ cloudinary.config({
 });
 
 module.exports.renderAiForm = (req, res) => {
-  /* return res.status(403).json({
-    message: "I am still working on this feature. It will be live soon.",
-  }); */
-
   res.render("ai/gen", { hideFooter: true, user: req.user });
 };
 
@@ -61,10 +57,6 @@ module.exports.checkImageLimit = async (req, res, next) => {
 };
 
 module.exports.generateImage = async (req, res) => {
-  /* return res.status(403).json({
-      message: "I am still working on this feature. It will be live soon.",
-    }); */
-
   const { prompt } = req.body;
 
   if (!prompt) {
@@ -72,12 +64,9 @@ module.exports.generateImage = async (req, res) => {
     return res.redirect("/ai");
   }
 
-  // const contents = `${prompt}. Please generate this image in a 9:16 vertical aspect ratio.`;
-  const contents = prompt;
-
   const response = await ai.models.generateContent({
     model: "gemini-2.0-flash-exp-image-generation",
-    contents: contents,
+    contents: prompt,
     config: {
       responseModalities: ["Text", "Image"],
     },
